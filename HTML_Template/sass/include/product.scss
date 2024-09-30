@@ -60,19 +60,13 @@
 }
 
 
-// Variables
-$primary-color: #333;
-$border-color: #ddd;
-$background-color: #f8f8f8;
-$hover-color: #e8e8e8;
-$border-radius: 4px;
-$transition-speed: 0.3s;
+
 
 // Mixins
 @mixin button-reset {
   background-color: $background-color;
   border: 1px solid $border-color;
-  color: $primary-color;
+  color: $botton-color-gray;
   cursor: pointer;
 }
 
@@ -100,7 +94,7 @@ $transition-speed: 0.3s;
       @include button-reset;
       font-size: 1rem;
       padding: 0.25rem 0.5rem;
-      transition: background-color $transition-speed ease;
+      transition: background-color 0.3s ease;
 
       &:hover {
         background-color: $hover-color;
@@ -121,7 +115,7 @@ $transition-speed: 0.3s;
       margin: 0 -1px;  // Negative margin to overlap borders
       
       &:disabled {
-        color: $primary-color;
+        color: $botton-color-gray;
         opacity: 1;  // Ensure full opacity even when disabled
       }
 
@@ -130,4 +124,13 @@ $transition-speed: 0.3s;
       }
     }
   }
+}
+
+.product-name {
+  height: 2.4em; /* Adjust based on your font size and desired number of lines */
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  line-clamp: 2;
 }

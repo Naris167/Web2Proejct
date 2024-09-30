@@ -37,19 +37,27 @@ button, button:focus {
 
 /* Color Template  */
 .color-primary {
-  color: #003859;
+  color: #ff8a09;
 }
 
 .color-primary-bg {
-  background: #003859;
+  background: #ff8a09;
 }
 
 .color-second {
-  color: #00A5C4;
+  color: #323738;
 }
 
 .color-second-bg {
-  background: #00A5C4;
+  background: #323738;
+}
+
+.color-tertiary {
+  color: #ECAF1B;
+}
+
+.color-tertiary-bg {
+  color: #ECAF1B;
 }
 
 .color-yellow {
@@ -81,7 +89,7 @@ button, button:focus {
 #top-sale .owl-carousel .owl-nav button.owl-prev span,
 #top-sale .owl-carousel .owl-nav button.owl-next span {
   font-size: 35px;
-  color: #003859;
+  color: #ff8a09;
   padding: 0 1rem;
 }
 #top-sale .owl-carousel .owl-nav button.owl-prev span {
@@ -110,7 +118,7 @@ button, button:focus {
 }
 #policy .policy-item .icon-wrapper {
   font-size: 1.25rem;
-  color: #00A5C4;
+  color: #323738;
   margin: 0.5rem 0;
 }
 #policy .policy-item .icon-wrapper .fas {
@@ -191,6 +199,15 @@ button, button:focus {
 }
 .quantity-selector .quantity-controls .quantity-input:focus {
   outline: none;
+}
+
+.product-name {
+  height: 2.4em; /* Adjust based on your font size and desired number of lines */
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  line-clamp: 2;
 }
 
 /*# sourceMappingURL=style.css.map */

@@ -1,0 +1,196 @@
+@import url("https://fonts.googleapis.com/css2?family=Baloo+Thambi+2&family=Raleway&family=Rubik&display=swap");
+/*              Sass Template           */
+/*  global classes  */
+button, button:focus {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+/* typography classes */
+.font-baloo {
+  font-family: "Baloo Thambi 2", cursive;
+}
+
+.font-rale {
+  font-family: "Raleway", cursive;
+}
+
+.font-rubik {
+  font-family: "Rubik", cursive;
+}
+
+.font-size-12 {
+  font-size: 12px;
+}
+
+.font-size-14 {
+  font-size: 14px;
+}
+
+.font-size-16 {
+  font-size: 16px;
+}
+
+.font-size-20 {
+  font-size: 20px;
+}
+
+/* Color Template  */
+.color-primary {
+  color: #003859;
+}
+
+.color-primary-bg {
+  background: #003859;
+}
+
+.color-second {
+  color: #00A5C4;
+}
+
+.color-second-bg {
+  background: #00A5C4;
+}
+
+.color-yellow {
+  color: #FFD289;
+}
+
+.color-yellow-bg {
+  background: #FFD289;
+}
+
+/*  top sale template   */
+#top-sale .owl-carousel .item .product a {
+  overflow: hidden;
+}
+#top-sale .owl-carousel .item .product img {
+  transition: transform 0.5s ease;
+}
+#top-sale .owl-carousel .item .product img:hover {
+  transform: scale(1.1);
+}
+#top-sale .owl-carousel .owl-nav button {
+  position: absolute;
+  top: 30%;
+  outline: none;
+}
+#top-sale .owl-carousel .owl-nav button.owl-prev {
+  left: 0;
+}
+#top-sale .owl-carousel .owl-nav button.owl-prev span,
+#top-sale .owl-carousel .owl-nav button.owl-next span {
+  font-size: 35px;
+  color: #003859;
+  padding: 0 1rem;
+}
+#top-sale .owl-carousel .owl-nav button.owl-prev span {
+  margin-left: -4rem;
+}
+#top-sale .owl-carousel .owl-nav button.owl-next {
+  right: 0;
+}
+#top-sale .owl-carousel .owl-nav button.owl-next span {
+  margin-right: -4rem;
+}
+
+/*   Special Price Section Template */
+#special-price .grid .grid-item {
+  margin-right: 1.2rem;
+  margin-top: 1rem;
+}
+
+/*  product template   */
+#policy .policy-item {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+#policy .policy-item .icon-wrapper {
+  font-size: 1.25rem;
+  color: #00A5C4;
+  margin: 0.5rem 0;
+}
+#policy .policy-item .icon-wrapper .fas {
+  border: 1px solid;
+  padding: 0.75rem;
+  border-radius: 50%;
+}
+#policy .policy-item .policy-text {
+  margin-bottom: 0;
+  font-size: 0.875rem;
+  text-align: center;
+  line-height: 1.2;
+}
+#policy .policy-item .policy-text strong {
+  display: block;
+  margin-bottom: 0.1rem;
+  font-size: 1em;
+  line-height: inherit;
+}
+#policy .policy-item .policy-text br {
+  display: none;
+}
+#policy .policy-item .policy-text:after {
+  content: "\a";
+  white-space: pre;
+}
+@media (max-width: 767px) {
+  #policy .policy-item {
+    margin-bottom: 1rem;
+  }
+}
+
+.custom-gap {
+  gap: 15px;
+}
+
+.quantity-selector {
+  display: flex;
+  align-items: center;
+  font-family: Arial, sans-serif;
+}
+.quantity-selector .quantity-label {
+  font-weight: bold;
+  margin-right: 1rem;
+  margin-bottom: 0;
+}
+.quantity-selector .quantity-controls {
+  display: flex;
+  align-items: center;
+}
+.quantity-selector .quantity-controls .quantity-btn {
+  background-color: #f8f8f8;
+  border: 1px solid #ddd;
+  color: #333;
+  cursor: pointer;
+  font-size: 1rem;
+  padding: 0.25rem 0.5rem;
+  transition: background-color 0.3s ease;
+}
+.quantity-selector .quantity-controls .quantity-btn:hover {
+  background-color: #e8e8e8;
+}
+.quantity-selector .quantity-controls .quantity-btn .fas {
+  font-size: 0.875rem;
+}
+.quantity-selector .quantity-controls .quantity-input {
+  width: 2.5rem;
+  text-align: center;
+  font-size: 1rem;
+  border: 1px solid #ddd;
+  background-color: #f8f8f8;
+  padding: 0.25rem 0;
+  margin: 0 -1px;
+}
+.quantity-selector .quantity-controls .quantity-input:disabled {
+  color: #333;
+  opacity: 1;
+}
+.quantity-selector .quantity-controls .quantity-input:focus {
+  outline: none;
+}
+
+/*# sourceMappingURL=style.css.map */

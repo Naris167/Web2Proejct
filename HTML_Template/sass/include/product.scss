@@ -1,0 +1,133 @@
+/*  product template   */
+
+
+// Mixins
+@mixin flex-center {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+  
+// Policy Section Styles
+#policy {
+    .policy-item {
+        height: 100%;
+        @include flex-center;
+
+        .icon-wrapper {
+        font-size: $icon-size;
+        color: $color-second;
+        margin: 0.5rem 0;
+
+        .fas {
+            border: 1px solid;
+            padding: 0.75rem;
+            border-radius: 50%;
+        }
+        }
+
+        .policy-text {
+        margin-bottom: 0;
+        font-size: $text-size;
+        text-align: center;
+        line-height: $line-height-small;
+
+        strong {
+            display: block;
+            margin-bottom: 0.1rem;  // Reduced from 0.25rem
+            font-size: 1em;  // Same size as the text below
+            line-height: inherit;
+        }
+
+        br {
+            display: none;  // Remove the default line break
+        }
+
+        &:after {
+            content: '\A';  // Add a line break using pseudo-element
+            white-space: pre;  // Preserve the line break
+        }
+        }
+    }
+
+    // Media query for mobile devices
+    @media (max-width: $mobile-breakpoint) {
+        .policy-item {
+        margin-bottom: 1rem;
+        }
+    }
+}
+
+
+// Variables
+$primary-color: #333;
+$border-color: #ddd;
+$background-color: #f8f8f8;
+$hover-color: #e8e8e8;
+$border-radius: 4px;
+$transition-speed: 0.3s;
+
+// Mixins
+@mixin button-reset {
+  background-color: $background-color;
+  border: 1px solid $border-color;
+  color: $primary-color;
+  cursor: pointer;
+}
+
+// Styles
+.custom-gap {
+    gap: 15px;
+}
+
+.quantity-selector {
+  display: flex;
+  align-items: center;
+  font-family: Arial, sans-serif;
+
+  .quantity-label {
+    font-weight: bold;
+    margin-right: 1rem;
+    margin-bottom: 0;  // To match h6 default style
+  }
+
+  .quantity-controls {
+    display: flex;
+    align-items: center;
+
+    .quantity-btn {
+      @include button-reset;
+      font-size: 1rem;
+      padding: 0.25rem 0.5rem;
+      transition: background-color $transition-speed ease;
+
+      &:hover {
+        background-color: $hover-color;
+      }
+
+      .fas {
+        font-size: 0.875rem;  // Slightly smaller icon
+      }
+    }
+
+    .quantity-input {
+      width: 2.5rem;
+      text-align: center;
+      font-size: 1rem;
+      border: 1px solid $border-color;
+      background-color: $background-color;
+      padding: 0.25rem 0;
+      margin: 0 -1px;  // Negative margin to overlap borders
+      
+      &:disabled {
+        color: $primary-color;
+        opacity: 1;  // Ensure full opacity even when disabled
+      }
+
+      &:focus {
+        outline: none;
+      }
+    }
+  }
+}

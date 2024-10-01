@@ -44,6 +44,11 @@
 
     <!-- Custom CSS file -->
     <link rel="stylesheet" href="style.css" />
+
+    <?php
+      require('function.php')
+    ?>
+
   </head>
   <body>
     <!-- start #header -->

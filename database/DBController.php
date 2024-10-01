@@ -1,13 +1,13 @@
 <?php
 
-
 class DBController
 {
     // Database Connection Properties
     protected $host = 'localhost';
     protected $user = 'root';
     protected $password = '';
-    protected $database = "shopee";
+    protected $database = "jobless_burger";
+    protected $port = 3307;
 
     // connection property
     public $con = null;
@@ -15,7 +15,7 @@ class DBController
     // call constructor
     public function __construct()
     {
-        $this->con = mysqli_connect($this->host, $this->user, $this->password, $this->database);
+        $this->con = mysqli_connect($this->host, $this->user, $this->password, $this->database, $this->port);
         if ($this->con->connect_error){
             echo "Fail " . $this->con->connect_error;
         }

@@ -67,7 +67,7 @@
 
                 <div class="col-sm-2 text-right">
                     <div class="font-size-20 text-danger font-baloo">
-                    $<span class="product_price">152</span>
+                        <span class="product_price">฿152</span>
                     </div>
                 </div>
                 </div>
@@ -133,7 +133,7 @@
 
                 <div class="col-sm-2 text-right">
                     <div class="font-size-20 text-danger font-baloo">
-                    $<span class="product_price">152</span>
+                        <span class="product_price">฿152</span>
                     </div>
                 </div>
                 </div>
@@ -149,8 +149,8 @@
                 <div class="border-top py-4">
                     <h5 class="font-baloo font-size-20">
                     Subtotal (2 item):&nbsp;
-                    <span class="text-danger"
-                        >$<span class="text-danger" id="deal-price">152.00</span>
+                    <span class="text-danger">
+                        <span class="text-danger" id="deal-price">฿152.00</span>
                     </span>
                     </h5>
                     <button type="submit" class="btn btn-warning mt-3">

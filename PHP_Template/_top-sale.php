@@ -25,7 +25,7 @@
                 <span><i class="far fa-star"></i></span>
                 </div>
                 <div class="price py-2">
-                <span>$152</span>
+                <span>฿152</span>
                 </div>
                 <button type="submit" class="btn btn-warning font-size-12">
                 Add to Cart
@@ -52,7 +52,7 @@
                 <span><i class="far fa-star"></i></span>
                 </div>
                 <div class="price py-2">
-                <span>$152</span>
+                <span>฿152</span>
                 </div>
                 <button type="submit" class="btn btn-warning font-size-12">
                 Add to Cart
@@ -75,11 +75,11 @@
                 <span><i class="fas fa-star"></i></span>
                 <span><i class="fas fa-star"></i></span>
                 <span><i class="fas fa-star"></i></span>
-                <span><i class="fas fa-star"></i></span>
+                <span><i class="fas fa-star-half-stroke"></i></span>
                 <span><i class="far fa-star"></i></span>
                 </div>
                 <div class="price py-2">
-                <span>$152</span>
+                <span>฿152</span>
                 </div>
                 <button type="submit" class="btn btn-warning font-size-12">
                 Add to Cart
@@ -106,7 +106,7 @@
                 <span><i class="far fa-star"></i></span>
                 </div>
                 <div class="price py-2">
-                <span>$152</span>
+                <span>฿152</span>
                 </div>
                 <button type="submit" class="btn btn-warning font-size-12">
                 Add to Cart
@@ -133,7 +133,7 @@
                 <span><i class="far fa-star"></i></span>
                 </div>
                 <div class="price py-2">
-                <span>$152</span>
+                <span>฿152</span>
                 </div>
                 <button type="submit" class="btn btn-warning font-size-12">
                 Add to Cart
@@ -161,7 +161,7 @@
                     <span><i class="far fa-star"></i></span>
                 </div>
                 <div class="price py-2">
-                    <span>$122</span>
+                    <span>฿122</span>
                 </div>
                 <button type="submit" class="btn btn-warning font-size-12">
                     Add to Cart
@@ -190,7 +190,7 @@
                     <span><i class="far fa-star"></i></span>
                 </div>
                 <div class="price py-2">
-                    <span>$122</span>
+                    <span>฿122</span>
                 </div>
                 <button type="submit" class="btn btn-warning font-size-12">
                     Add to Cart

@@ -41,15 +41,15 @@
                 <table class="my-3">
                 <tr class="font-rale font-size-14">
                     <td>M.R.P:</td>
-                    <td><strike>$162.00</strike></td>
+                    <td><strike>฿162.00</strike></td>
                 </tr>
                 <tr class="font-rale font-size-14">
                     <td>Deal Price:</td>
-                    <td class="font-size-20 text-danger">$<span>152.00</span></td>
+                    <td><span class="font-size-20 text-danger">฿152.00</span></td>
                 </tr>
                 <tr class="font-rale font-size-14">
                     <td>You Save:</td>
-                    <td><span class="font-size-16 text-danger">$152.00</span></td>
+                    <td><span class="font-size-16 text-danger">฿152.00</span></td>
                 </tr>
                 </table>
                 <!---    !product price       -->

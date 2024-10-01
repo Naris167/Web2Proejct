@@ -36,7 +36,7 @@
                     <span><i class="far fa-star"></i></span>
                     </div>
                     <div class="price py-2">
-                    <span>$152</span>
+                    <span>฿152</span>
                     </div>
                     <button
                     type="submit"
@@ -71,7 +71,7 @@
                     <span><i class="far fa-star"></i></span>
                     </div>
                     <div class="price py-2">
-                    <span>$152</span>
+                    <span>฿152</span>
                     </div>
                     <button
                     type="submit"
@@ -106,7 +106,7 @@
                     <span><i class="far fa-star"></i></span>
                     </div>
                     <div class="price py-2">
-                    <span>$152</span>
+                    <span>฿152</span>
                     </div>
                     <button
                     type="submit"
@@ -141,7 +141,7 @@
                     <span><i class="far fa-star"></i></span>
                     </div>
                     <div class="price py-2">
-                    <span>$152</span>
+                    <span>฿152</span>
                     </div>
                     <button
                     type="submit"
@@ -176,7 +176,7 @@
                     <span><i class="far fa-star"></i></span>
                     </div>
                     <div class="price py-2">
-                    <span>$152</span>
+                    <span>฿152</span>
                     </div>
                     <button
                     type="submit"
@@ -211,7 +211,7 @@
                     <span><i class="far fa-star"></i></span>
                     </div>
                     <div class="price py-2">
-                    <span>$152</span>
+                    <span>฿152</span>
                     </div>
                     <button
                     type="submit"
@@ -246,7 +246,7 @@
                     <span><i class="far fa-star"></i></span>
                     </div>
                     <div class="price py-2">
-                    <span>$152</span>
+                    <span>฿152</span>
                     </div>
                     <button
                     type="submit"
@@ -281,7 +281,7 @@
                     <span><i class="far fa-star"></i></span>
                     </div>
                     <div class="price py-2">
-                    <span>$152</span>
+                    <span>฿152</span>
                     </div>
                     <button
                     type="submit"
@@ -316,7 +316,7 @@
                     <span><i class="far fa-star"></i></span>
                     </div>
                     <div class="price py-2">
-                    <span>$152</span>
+                    <span>฿152</span>
                     </div>
                     <button
                     type="submit"
@@ -351,7 +351,7 @@
                     <span><i class="far fa-star"></i></span>
                     </div>
                     <div class="price py-2">
-                    <span>$152</span>
+                    <span>฿152</span>
                     </div>
                     <button
                     type="submit"
@@ -388,7 +388,7 @@
                     <span><i class="far fa-star"></i></span>
                     </div>
                     <div class="price py-2">
-                    <span>$152</span>
+                    <span>฿152</span>
                     </div>
                     <button
                     type="submit"
@@ -423,7 +423,7 @@
                     <span><i class="far fa-star"></i></span>
                     </div>
                     <div class="price py-2">
-                    <span>$152</span>
+                    <span>฿152</span>
                     </div>
                     <button
                     type="submit"
@@ -460,7 +460,7 @@
                     <span><i class="far fa-star"></i></span>
                     </div>
                     <div class="price py-2">
-                    <span>$152</span>
+                    <span>฿152</span>
                     </div>
                     <button
                     type="submit"
@@ -495,7 +495,7 @@
                     <span><i class="far fa-star"></i></span>
                     </div>
                     <div class="price py-2">
-                    <span>$152</span>
+                    <span>฿152</span>
                     </div>
                     <button
                     type="submit"
@@ -530,7 +530,7 @@
                     <span><i class="far fa-star"></i></span>
                     </div>
                     <div class="price py-2">
-                    <span>$152</span>
+                    <span>฿152</span>
                     </div>
                     <button
                     type="submit"
@@ -565,7 +565,7 @@
                     <span><i class="far fa-star"></i></span>
                     </div>
                     <div class="price py-2">
-                    <span>$152</span>
+                    <span>฿152</span>
                     </div>
                     <button
                     type="submit"
@@ -600,7 +600,7 @@
                     <span><i class="far fa-star"></i></span>
                     </div>
                     <div class="price py-2">
-                    <span>$152</span>
+                    <span>฿152</span>
                     </div>
                     <button
                     type="submit"
@@ -635,7 +635,7 @@
                     <span><i class="far fa-star"></i></span>
                     </div>
                     <div class="price py-2">
-                    <span>$152</span>
+                    <span>฿152</span>
                     </div>
                     <button
                     type="submit"
@@ -670,7 +670,7 @@
                     <span><i class="far fa-star"></i></span>
                     </div>
                     <div class="price py-2">
-                    <span>$152</span>
+                    <span>฿152</span>
                     </div>
                     <button
                     type="submit"
@@ -705,7 +705,7 @@
                     <span><i class="far fa-star"></i></span>
                     </div>
                     <div class="price py-2">
-                    <span>$152</span>
+                    <span>฿152</span>
                     </div>
                     <button
                     type="submit"
@@ -740,7 +740,7 @@
                     <span><i class="far fa-star"></i></span>
                     </div>
                     <div class="price py-2">
-                    <span>$152</span>
+                    <span>฿152</span>
                     </div>
                     <button
                     type="submit"
@@ -775,7 +775,7 @@
                     <span><i class="far fa-star"></i></span>
                     </div>
                     <div class="price py-2">
-                    <span>$152</span>
+                    <span>฿152</span>
                     </div>
                     <button
                     type="submit"
@@ -810,7 +810,7 @@
                     <span><i class="far fa-star"></i></span>
                     </div>
                     <div class="price py-2">
-                    <span>$152</span>
+                    <span>฿152</span>
                     </div>
                     <button
                     type="submit"
@@ -845,7 +845,7 @@
                     <span><i class="far fa-star"></i></span>
                     </div>
                     <div class="price py-2">
-                    <span>$152</span>
+                    <span>฿152</span>
                     </div>
                     <button
                     type="submit"
@@ -880,7 +880,7 @@
                     <span><i class="far fa-star"></i></span>
                     </div>
                     <div class="price py-2">
-                    <span>$152</span>
+                    <span>฿152</span>
                     </div>
                     <button
                     type="submit"
@@ -917,7 +917,7 @@
                     <span><i class="far fa-star"></i></span>
                     </div>
                     <div class="price py-2">
-                    <span>$152</span>
+                    <span>฿152</span>
                     </div>
                     <button
                     type="submit"
@@ -954,7 +954,7 @@
                     <span><i class="far fa-star"></i></span>
                     </div>
                     <div class="price py-2">
-                    <span>$152</span>
+                    <span>฿152</span>
                     </div>
                     <button
                     type="submit"
@@ -989,7 +989,7 @@
                     <span><i class="far fa-star"></i></span>
                     </div>
                     <div class="price py-2">
-                    <span>$152</span>
+                    <span>฿152</span>
                     </div>
                     <button
                     type="submit"
@@ -1024,7 +1024,7 @@
                     <span><i class="far fa-star"></i></span>
                     </div>
                     <div class="price py-2">
-                    <span>$152</span>
+                    <span>฿152</span>
                     </div>
                     <button
                     type="submit"
@@ -1059,7 +1059,7 @@
                     <span><i class="far fa-star"></i></span>
                     </div>
                     <div class="price py-2">
-                    <span>$152</span>
+                    <span>฿152</span>
                     </div>
                     <button
                     type="submit"
@@ -1094,7 +1094,7 @@
                     <span><i class="far fa-star"></i></span>
                     </div>
                     <div class="price py-2">
-                    <span>$152</span>
+                    <span>฿152</span>
                     </div>
                     <button
                     type="submit"
@@ -1129,7 +1129,7 @@
                     <span><i class="far fa-star"></i></span>
                     </div>
                     <div class="price py-2">
-                    <span>$152</span>
+                    <span>฿152</span>
                     </div>
                     <button
                     type="submit"
@@ -1164,7 +1164,7 @@
                     <span><i class="far fa-star"></i></span>
                     </div>
                     <div class="price py-2">
-                    <span>$152</span>
+                    <span>฿152</span>
                     </div>
                     <button
                     type="submit"
@@ -1199,7 +1199,7 @@
                     <span><i class="far fa-star"></i></span>
                     </div>
                     <div class="price py-2">
-                    <span>$152</span>
+                    <span>฿152</span>
                     </div>
                     <button
                     type="submit"

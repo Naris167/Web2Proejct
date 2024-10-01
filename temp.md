@@ -349,3 +349,119 @@ Also create another php code that populate the following html
 but before that, create one php function to get this data from db. Use "$result = $this->db->con->query" for the connection. Get `item_type` from `menu` table. Please note there are several items in this table so only get all the unique `item_type` and return it as an array. before return it, please sort it first.
 
 Ok, back the the html. call that new function to get the `item_type`, and for each item type, you have to put it in one html line like this. For example, is the value from the `item_type` is "Breakfast", you have to put it in the data-filter like this (also have dot before it) and put in the text for button like this <button class="btn" data-filter=".Breakfast">Breakfast</button>. Do this as many items as it have in the array
+
+
+
+
+
+
+
+
+
+
+
+modify this function so it can accept both normal item_id or array of item id. The reason to do this is because this function is used in other place with the normal item_id. When this function get an array of item_id, it should construct sql command to fetch all column of the specify item_id. For example, if the arrry have item_id 1, 2, 3 it should get only 3 record of each item_id. Now when you return the value of this function. If the input is just a normal item_id (only 1 id) return the value as an array. But if the input is an array of item_id, return an array of each record inside the array.
+
+```php
+public function getMenu($item_id = null, $table = 'menu') {
+    if (isset($item_id)) {
+        $item_id = $this->db->con->real_escape_string($item_id);  // Prevent SQL injection
+        $result = $this->db->con->query("SELECT * FROM {$table} WHERE item_id = {$item_id} LIMIT 1");
+
+        if ($result && $result->num_rows > 0) {
+            return $result->fetch_assoc();
+        }
+    }
+    
+    return null;  // Return null if no item found or if $item_id is not set
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+convert this to PHP code the can ge data from database and populate this html block
+
+```html
+<div class="row border-top py-3 mt-3">
+  <div class="col-sm-2">
+      <img
+      src="./assetsPHP/menu/[BURGER] Real Beef Burger.png"
+      alt="cart1"
+      class="img-fluid"
+      style="height: 120px"
+      />
+  </div>
+<div class="col-sm-8">
+    <h5 class="font-baloo font-size-20">Real Beef Burger</h5>
+    <!-- product rating -->
+    <div class="d-flex">
+      <div class="rating text-warning font-size-12">
+          <?php echo generateStarRating($item_info['item_rating']); ?>
+      </div>
+      <a href="#" class="px-2 font-rale font-size-14">20,534 ratings</a>
+    </div>
+    <!--  !product rating-->
+
+    <!-- product qty -->
+    <div class="qty quantity-selector-container d-flex pt-2">
+      <div class="quantity-selector">
+          <div class="quantity-controls">
+              <button class="qty-btn qty-down" data-id="Real Beef Burger">
+                  <i class="fas fa-angle-down"></i>
+              </button>
+              <input
+                  type="text"
+                  data-id="Real Beef Burger"
+                  class="qty_input"
+                  value="1"
+                  placeholder="1"
+              />
+              <button class="qty-btn qty-up" data-id="Real Beef Burger">
+                  <i class="fas fa-angle-up"></i>
+              </button>
+          </div>
+      </div>
+      <button
+          type="submit"
+          class="btn font-baloo text-danger px-3 border-right"
+      >
+          Delete
+      </button>
+      <button type="submit" class="btn font-baloo text-danger">
+          Save for Later
+      </button>
+  </div>
+      <!-- !product qty -->
+  </div>
+
+  <div class="col-sm-2 text-right">
+      <div class="font-size-20 text-danger font-baloo">
+          <span class="product_price">฿152</span>
+      </div>
+  </div>
+</div>
+```
+
+
+1. First, you will have to call this `$cart_item = $product->getData('cart');` to get the cart information
+2. It will return the array inside array like this `Array ( [0] => Array ( [cart_id] => 1 [user_id] => 1 [item_id] => 2 ) [1] => Array ( [cart_id] => 2 [user_id] => 1 [item_id] => 2 ))`
+3. But before that, you have to get the `[item_id]` from each inner array which will be used to get the product information from another table. Store them in the array. Make sure that the value will not duplicate.
+4. Call this function and input that array into this function `$product->getMenu($arr_item_id, 'menu')`. This will return the array of array
+5. for each array it is one cart record. You have to populate as many html block as the number of array. It will looks like this
+
+Array ( [0] => Array ( [item_id] => 1 [item_type] => Breakfast [item_name] => Bacon, Egg & Cheese Biscuit [item_price] => 119.00 [item_image] => ./assetsPHP/menu/[BREAKFAST] Bacon, Egg & Cheese Biscuit.png [item_rating] => 5.0 [item_register] => 2024-09-28 11:08:57 [is_top_sale] => 0 [is_new] => 0 [item_description] => Introducing our Bacon, Egg & Cheese Biscuit - the perfect way to fuel your morning with deliciously balanced ingredients. ) [1] => Array ( [item_id] => 2 [item_type] => Breakfast [item_name] => Bacon, Egg & Cheese Griddles [item_price] => 129.00 [item_image] => ./assetsPHP/menu/[BREAKFAST] Bacon, Egg & Cheese Griddles.png [item_rating] => 5.0 [item_register] => 2024-09-28 11:08:57 [is_top_sale] => 1 [is_new] => 0 [item_description] => Enjoy the perfect blend of flavors in every bite, making this a clean, satisfying choice to fuel your morning right! ) )
+
+6. Here is how you can create html.
+6.1 In the img tag change this part src=[item_image]
+6.2 In the img tag change this part alt="cart-1". Increment the number as you populate (cart-1, cart-2, cart-3 and so on).
+6.3 At this h5 tag, do this <h5 class="font-baloo font-size-20">[item_name]</h5>, 
+6.4 For the value of data-id, please use cart-1, cart-2, cart-3 and so on.
+6.5 At <span class="product_price">฿152</span> change the price using [item_price]

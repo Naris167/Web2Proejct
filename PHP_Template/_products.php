@@ -1,8 +1,10 @@
 <!--   product  -->
 <?php
     $item_id = $_GET['item_id']??1;
+    // $test = array("1", "2", "3");
     $item_info = $product->getMenu($item_id, 'menu');
     $discount = 10.00;
+    // print_r($item_id);
     // print_r($item_info);
     // Array ( [0] => Array ( [item_id] => 2 [item_type] => Breakfast [item_name] => Bacon, Egg & Cheese Griddles
     // [item_price] => 129.00 [item_image] => ./assetsPHP/menu/[BREAKFAST] Bacon, Egg & Cheese Griddles.png [item_rating] => 5.0

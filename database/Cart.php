@@ -32,6 +32,28 @@ class Cart
         }
     }
 
+    // delete from cart table
+    public function deleteFromCartTable($params = null, $table = "cart") {
+        if ($this->db->con != null) {
+            if ($params != null) {
+                // create conditions string
+                $conditions = [];
+                foreach ($params as $key => $value) {
+                    $conditions[] = "$key = $value";
+                }
+                $conditions_string = implode(' AND ', $conditions);
+
+                // create sql query
+                $query_string = sprintf("DELETE FROM %s WHERE %s", $table, $conditions_string);
+
+                // execute query
+                $result = $this->db->con->query($query_string);
+                return $result;
+            }
+            return false;
+        }
+    }
+
     // to get user_id and item_id and insert into cart table
     public function addToCart($userid, $itemid) {
         error_log("addToCart called with user_id: $userid, item_id: $itemid");
@@ -50,16 +72,22 @@ class Cart
         return false;
     }
 
+    // delete from cart table
+    public function deleteFromCart($userid, $itemid) {
+        error_log("deleteFromCart called with user_id: $userid, item_id: $itemid");
+        if (isset($userid) && isset($itemid)) {
+            $params = array(
+                "user_id" => $userid,
+                "item_id" => $itemid
+            );
 
-    // delete cart item using cart item id
-    public function deleteCart($item_id = null, $table = 'cart'){
-        if($item_id != null){
-            $result = $this->db->con->query("DELETE FROM {$table} WHERE item_id={$item_id}");
-            if($result){
-                header("Location:" . $_SERVER['PHP_SELF']);
-            }
+            // delete data from cart
+            $result = $this->deleteFromCartTable($params);
+            error_log("deleteFromCartTable result: " . ($result ? "true" : "false"));
             return $result;
         }
+        error_log("deleteFromCart failed: userid or itemid not set");
+        return false;
     }
 
     // calculate sub total

@@ -7,6 +7,14 @@
     $product = new Product($db);
     // print_r($product->getData('menu', 'is_top_sale'));
     $cart = new Cart($db);
+    $cart_items = $product->getData('cart');
+
+    // Extract unique item_ids
+    $item_ids = array_unique(array_column($cart_items, 'item_id'));
+
+    // Get menu items
+    $menu_items = $product->getMenu($item_ids, 'menu');
+    $item_count = count($menu_items);
 
 
 

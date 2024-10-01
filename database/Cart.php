@@ -7,7 +7,7 @@ class Cart
 
     public function __construct(DBController $db)
     {
-        if (!isset($db->con)) return null;
+        if (!isset($db->con)) return;
         $this->db = $db;
     }
 
@@ -28,25 +28,28 @@ class Cart
                 $result = $this->db->con->query($query_string);
                 return $result;
             }
+            return false;
         }
     }
 
     // to get user_id and item_id and insert into cart table
-    public  function addToCart($userid, $itemid){
-        if (isset($userid) && isset($itemid)){
+    public function addToCart($userid, $itemid) {
+        error_log("addToCart called with user_id: $userid, item_id: $itemid");
+        if (isset($userid) && isset($itemid)) {
             $params = array(
                 "user_id" => $userid,
                 "item_id" => $itemid
             );
-
+    
             // insert data into cart
             $result = $this->insertIntoCart($params);
-            if ($result){
-                // Reload Page
-                header("Location: " . $_SERVER['PHP_SELF']);
-            }
+            error_log("insertIntoCart result: " . ($result ? "true" : "false"));
+            return $result;
         }
+        error_log("addToCart failed: userid or itemid not set");
+        return false;
     }
+
 
     // delete cart item using cart item id
     public function deleteCart($item_id = null, $table = 'cart'){

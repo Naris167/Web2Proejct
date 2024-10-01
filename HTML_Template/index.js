@@ -126,6 +126,9 @@ $(document).ready(function () {
       }
   });
 
-
+  $('.size-button').on('click', function() {
+    $('.size-button').removeClass('selected');
+    $(this).addClass('selected');
+  });
 
 });

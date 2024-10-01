@@ -8,31 +8,31 @@ button, button:focus {
 
 /* typography classes */
 .font-baloo {
-  font-family: "Baloo Thambi 2", cursive;
+  font-family: "Baloo Thambi 2", cursive !important;
 }
 
 .font-rale {
-  font-family: "Raleway", cursive;
+  font-family: "Raleway", cursive !important;
 }
 
 .font-rubik {
-  font-family: "Rubik", cursive;
+  font-family: "Rubik", cursive !important;
 }
 
 .font-size-12 {
-  font-size: 12px;
+  font-size: 12px !important;
 }
 
 .font-size-14 {
-  font-size: 14px;
+  font-size: 14px !important;
 }
 
 .font-size-16 {
-  font-size: 16px;
+  font-size: 16px !important;
 }
 
 .font-size-20 {
-  font-size: 20px;
+  font-size: 20px !important;
 }
 
 /* Color Template  */
@@ -53,19 +53,19 @@ button, button:focus {
 }
 
 .color-tertiary {
-  color: #ECAF1B;
+  color: #ecaf1b;
 }
 
 .color-tertiary-bg {
-  color: #ECAF1B;
+  color: #ecaf1b;
 }
 
 .color-yellow {
-  color: #FFD289;
+  color: #ffd289;
 }
 
 .color-yellow-bg {
-  background: #FFD289;
+  background: #ffd289;
 }
 
 /*  top sale template   */
@@ -152,7 +152,7 @@ button, button:focus {
 }
 
 .custom-gap {
-  gap: 15px;
+  gap: 15px !important;
 }
 
 .product-name {
@@ -214,6 +214,42 @@ button, button:focus {
 }
 .quantity-selector .quantity-controls .qty_input:focus {
   outline: none;
+}
+
+/*  option selector for product page  */
+.size-selector {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.size-selector .size-option {
+  font-family: "Rubik", sans-serif;
+  border: 1px solid #dee2e6;
+  border-radius: 4px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+.size-selector .size-option:hover {
+  border-color: rgb(192.9827586207, 200.5, 208.0172413793);
+}
+.size-selector .size-button {
+  background: none;
+  border: none;
+  font-size: 14px;
+  cursor: pointer;
+  padding: 10px 15px;
+  transition: all 0.3s ease;
+  color: #333;
+  width: 100%;
+  height: 100%;
+}
+.size-selector .size-button.selected {
+  background-color: #fcb465;
+  color: #333;
+  font-weight: bold;
+}
+.size-selector .size-button:hover:not(.selected) {
+  background-color: #f0f0f0;
 }
 
 /*# sourceMappingURL=style.css.map */

@@ -1,66 +1,62 @@
 /*  product template   */
 
-
 // Mixins
 @mixin flex-center {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
-  
+
 // Policy Section Styles
 #policy {
+  .policy-item {
+    height: 100%;
+    @include flex-center;
+
+    .icon-wrapper {
+      font-size: $icon-size;
+      color: $color-second;
+      margin: 0.5rem 0;
+
+      .fas {
+        border: 1px solid;
+        padding: 0.75rem;
+        border-radius: 50%;
+      }
+    }
+
+    .policy-text {
+      margin-bottom: 0;
+      font-size: $text-size;
+      text-align: center;
+      line-height: $line-height-small;
+
+      strong {
+        display: block;
+        margin-bottom: 0.1rem; // Reduced from 0.25rem
+        font-size: 1em; // Same size as the text below
+        line-height: inherit;
+      }
+
+      br {
+        display: none; // Remove the default line break
+      }
+
+      &:after {
+        content: "\A"; // Add a line break using pseudo-element
+        white-space: pre; // Preserve the line break
+      }
+    }
+  }
+
+  // Media query for mobile devices
+  @media (max-width: $mobile-breakpoint) {
     .policy-item {
-        height: 100%;
-        @include flex-center;
-
-        .icon-wrapper {
-        font-size: $icon-size;
-        color: $color-second;
-        margin: 0.5rem 0;
-
-        .fas {
-            border: 1px solid;
-            padding: 0.75rem;
-            border-radius: 50%;
-        }
-        }
-
-        .policy-text {
-        margin-bottom: 0;
-        font-size: $text-size;
-        text-align: center;
-        line-height: $line-height-small;
-
-        strong {
-            display: block;
-            margin-bottom: 0.1rem;  // Reduced from 0.25rem
-            font-size: 1em;  // Same size as the text below
-            line-height: inherit;
-        }
-
-        br {
-            display: none;  // Remove the default line break
-        }
-
-        &:after {
-            content: '\A';  // Add a line break using pseudo-element
-            white-space: pre;  // Preserve the line break
-        }
-        }
+      margin-bottom: 1rem;
     }
-
-    // Media query for mobile devices
-    @media (max-width: $mobile-breakpoint) {
-        .policy-item {
-        margin-bottom: 1rem;
-        }
-    }
+  }
 }
-
-
-
 
 // Mixins
 @mixin button-reset {
@@ -72,9 +68,8 @@
 
 // Styles
 .custom-gap {
-    gap: 15px;
+  gap: 15px !important;
 }
-
 
 .product-name {
   height: 2.4em; /* Adjust based on your font size and desired number of lines */

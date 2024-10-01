@@ -1,4 +1,5 @@
 <?php
+  ob_start();
   include('header.php');
   include('./PHP_Template/_banner-area.php');
   include('./PHP_Template/_top-sale.php');

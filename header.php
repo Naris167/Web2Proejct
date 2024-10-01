@@ -65,7 +65,7 @@
 
       <!-- Primary Navigation -->
       <nav class="navbar navbar-expand-lg navbar-dark color-second-bg">
-        <a class="navbar-brand" href="#">Jobless Burger</a>
+        <a class="navbar-brand" href="index.php">Jobless Burger</a>
         <button
           class="navbar-toggler"
           type="button"

@@ -76,7 +76,7 @@
                 <div class="row border-top py-3 mt-3">
                 <div class="col-sm-2">
                     <img
-                    src="./assetsPHP/menu/[SIDE-DISH] Mozzarella Sticks.png"
+                    src="./assetsPHP/menu/[SNACKS] Mozzarella Sticks.png"
                     style="height: 120px"
                     alt="cart1"
                     class="img-fluid"

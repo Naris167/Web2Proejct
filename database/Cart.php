@@ -11,25 +11,44 @@ class Cart
         $this->db = $db;
     }
 
-    // insert into cart table
-    public  function insertIntoCart($params = null, $table = "cart"){
-        if ($this->db->con != null){
-            if ($params != null){
-                // "Insert into cart(user_id) values (0)"
-                // get table columns
+    public function insertIntoCart($params = null, $table = "cart") {
+        if ($this->db->con != null) {
+            if ($params != null) {
+                // Get table columns
                 $columns = implode(',', array_keys($params));
-
-                $values = implode(',' , array_values($params));
-
-                // create sql query
-                $query_string = sprintf("INSERT INTO %s(%s) VALUES(%s)", $table, $columns, $values);
-
-                // execute query
-                $result = $this->db->con->query($query_string);
-                return $result;
+    
+                // Prepare values with placeholders
+                $placeholders = implode(',', array_fill(0, count($params), '?'));
+    
+                // Create prepared statement
+                $query_string = sprintf("INSERT INTO %s(%s) VALUES(%s)", $table, $columns, $placeholders);
+    
+                // Prepare the statement
+                $stmt = $this->db->con->prepare($query_string);
+    
+                if ($stmt) {
+                    // Bind parameters
+                    $types = str_repeat('s', count($params)); // Assume all parameters are strings
+                    $values = array_values($params);
+                    $bindParams = array_merge(array($types), $values);
+                    $bindParamsRef = array();
+                    foreach ($bindParams as $key => $value) {
+                        $bindParamsRef[$key] = &$bindParams[$key];
+                    }
+                    call_user_func_array(array($stmt, 'bind_param'), $bindParamsRef);
+    
+                    // Execute the statement
+                    $result = $stmt->execute();
+    
+                    // Close the statement
+                    $stmt->close();
+    
+                    return $result;
+                }
+                return false;
             }
-            return false;
         }
+        return false;
     }
 
     // delete from cart table
@@ -55,14 +74,15 @@ class Cart
     }
 
     // to get user_id and item_id and insert into cart table
-    public function addToCart($userid, $itemid) {
-        error_log("addToCart called with user_id: $userid, item_id: $itemid");
+    public function addToCart($userid, $itemid, $variant = "L", $amount = 1) {
+        error_log("addToCart called with user_id: $userid, item_id: $itemid, item_variant: $variant, item_amount: $amount");
         if (isset($userid) && isset($itemid)) {
             $params = array(
                 "user_id" => $userid,
-                "item_id" => $itemid
-            );
-    
+                "item_id" => $itemid,
+                "item_variant" => $variant,
+                "item_amount" => $amount
+            );    
             // insert data into cart
             $result = $this->insertIntoCart($params);
             error_log("insertIntoCart result: " . ($result ? "true" : "false"));

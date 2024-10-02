@@ -45,36 +45,53 @@ class Product
     // get menu using item id
     public function getMenu($item_id = null, $table = 'menu') {
         if (isset($item_id)) {
-            if (is_array($item_id)) {
+            if (is_array($item_id) && !empty($item_id)) {
                 // Handle array of item_ids
-                $escaped_ids = array_map(function($id) {
-                    return $this->db->con->real_escape_string($id);
-                }, $item_id);
+                $placeholders = implode(',', array_fill(0, count($item_id), '?'));
+                $query = "SELECT * FROM `{$table}` WHERE item_id IN ($placeholders)";
                 
-                $id_list = implode(',', $escaped_ids);
-                $query = "SELECT * FROM {$table} WHERE item_id IN ({$id_list})";
-                $result = $this->db->con->query($query);
+                $stmt = $this->db->con->prepare($query);
+                if ($stmt === false) {
+                    error_log("Prepare failed: " . $this->db->con->error);
+                    return [];
+                }
+    
+                $types = str_repeat('i', count($item_id));
+                $stmt->bind_param($types, ...$item_id);
+                
+                $stmt->execute();
+                $result = $stmt->get_result();
     
                 if ($result && $result->num_rows > 0) {
-                    $items = [];
-                    while ($row = $result->fetch_assoc()) {
-                        $items[] = $row;
-                    }
+                    $items = $result->fetch_all(MYSQLI_ASSOC);
+                    $stmt->close();
                     return $items;
                 }
-            } else {
+                $stmt->close();
+            } elseif (!is_array($item_id)) {
                 // Handle single item_id
-                $escaped_id = $this->db->con->real_escape_string($item_id);
-                $query = "SELECT * FROM {$table} WHERE item_id = {$escaped_id} LIMIT 1";
-                $result = $this->db->con->query($query);
+                $query = "SELECT * FROM `{$table}` WHERE item_id = ? LIMIT 1";
+                
+                $stmt = $this->db->con->prepare($query);
+                if ($stmt === false) {
+                    error_log("Prepare failed: " . $this->db->con->error);
+                    return [];
+                }
+    
+                $stmt->bind_param('i', $item_id);
+                $stmt->execute();
+                $result = $stmt->get_result();
     
                 if ($result && $result->num_rows > 0) {
-                    return $result->fetch_assoc();
+                    $item = $result->fetch_assoc();
+                    $stmt->close();
+                    return $item;
                 }
+                $stmt->close();
             }
         }
         
-        return []; // Return an empty array if no items found or if $item_id is not set
+        return []; // Return an empty array if no items found or if $item_id is not set or empty
     }
 
     public function getUniqueItemTypes() {

@@ -137,6 +137,8 @@ $(document).ready(function () {
     var form = $(this);
     var userId = form.find('input[name="user_id"]').val();
     var itemId = form.find('input[name="item_id"]').val();
+    var itemVariant = form.find('input[name="item_variant"]').val();
+    var itemAmount = form.find('input[name="item_amount"]').val();
 
     $.ajax({
       url: "helper_add_to_cart.php",
@@ -144,13 +146,16 @@ $(document).ready(function () {
       data: {
         user_id: userId,
         item_id: itemId,
+        item_variant: itemVariant,
+        item_amount: itemAmount,
       },
       dataType: "text",
       success: function (responseText) {
-        console.log("Raw response:", responseText);
+        console.log("Raw response 1:", responseText);
 
         try {
           var data = JSON.parse(responseText);
+          console.log("Raw response 2:", data);
           if (data.success) {
             showNotification("Item added to cart successfully!", "success");
           } else {
@@ -161,6 +166,7 @@ $(document).ready(function () {
           }
         } catch (e) {
           console.error("Failed to parse JSON:", e);
+          console.log("Raw response 3:", e);
           showNotification(
             "An error occurred while processing the response.",
             "error"
@@ -185,8 +191,10 @@ $(document).ready(function () {
       var form = $(this).closest("form");
       var userId = form.find('input[name="user_id"]').val();
       var itemId = form.find('input[name="item_id"]').val();
+      var itemVariant = form.find('input[name="item_variant"]').val();
+      var itemAmount = form.find('input[name="item_amount"]').val();
 
-      deleteCartItem(userId, itemId);
+      deleteCartItem(userId, itemId, itemVariant, itemAmount);
     }
   );
 
@@ -195,17 +203,19 @@ $(document).ready(function () {
     return e.keyCode != 13;
   });
 
-  function deleteCartItem(userId, itemId) {
+  function deleteCartItem(userId, itemId, itemVariant, itemAmount) {
     $.ajax({
       url: "helper_delete_from_cart.php",
       method: "POST",
       data: {
         user_id: userId,
         item_id: itemId,
+        item_variant: itemVariant,
+        item_amount: itemAmount,
       },
       dataType: "text",
       success: function (responseText) {
-        console.log("Raw response:", responseText);
+        // console.log("Raw response:", responseText);
 
         try {
           var data = JSON.parse(responseText);
@@ -366,7 +376,7 @@ $(document).ready(function () {
   }
 
   function repositionNotifications() {
-    var topOffset = 20;
+    var topOffset = 90;
     notifications.forEach(function (notification, index) {
       notification.css({
         top: topOffset + "px",

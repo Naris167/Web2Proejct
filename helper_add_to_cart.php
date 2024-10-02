@@ -6,7 +6,7 @@ require_once('function.php');
 
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
     try {
-        $result = $cart->addToCart($_POST['user_id'], $_POST['item_id']);
+        $result = $cart->addToCart($_POST['user_id'], $_POST['item_id'], $_POST['item_variant'], $_POST['item_amount']);
         
         header('Content-Type: application/json');
         echo json_encode(['success' => $result]);

@@ -12,7 +12,6 @@ SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
-
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
@@ -25,14 +24,25 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `cart`
+-- Table structure for table `user`
 --
 
-CREATE TABLE `cart` (
-  `cart_id` int(11) NOT NULL,
+CREATE TABLE `user` (
   `user_id` int(11) NOT NULL,
-  `item_id` int(11) NOT NULL
+  `first_name` varchar(100) NOT NULL,
+  `last_name` varchar(100) NOT NULL,
+  `register_date` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `user`
+--
+
+INSERT INTO `user` (`user_id`, `first_name`, `last_name`, `register_date`) VALUES
+(1, 'Akarawin', 'Somboon', '2024-09-30 16:08:57'),
+(2, 'Kamolwit', 'Thangsupanich', '2024-09-30 16:08:57'),
+(3, 'Naris', 'Pornjirawittayakul', '2024-09-30 16:08:57'),
+(4, 'Rujiphas', 'Pakornmaneekul', '2024-09-30 16:08:57');
 
 -- --------------------------------------------------------
 
@@ -93,30 +103,21 @@ INSERT INTO `menu` (`item_id`, `item_type`, `item_name`, `item_price`, `item_ima
 (33, 'Snacks', 'Onion Rings', 49, './assetsPHP/menu/[SNACKS] Onion Rings.png', 4.5, '2024-09-28 11:08:57', FALSE, TRUE, "Our Onion Rings are a crispy, flavorful treat that's perfect as a side or snack. Each ring features thick-cut onions, lightly battered and fried to golden perfection, offering a satisfying crunch with a tender, sweet onion center. With their irresistible texture and savory flavor, they make a delicious addition to any meal or a stand-alone snack. Enjoy them on their own or paired with your favorite dipping sauce for a satisfying and flavorful experience that hits the spot every time!"),
 (34, 'Snacks', 'Spicy Nuggets', 189, './assetsPHP/menu/[SNACKS] Spicy Nuggets.png', 5, '2024-09-28 11:08:57', FALSE, TRUE, "Our Spicy Nuggets are a bold twist on a classic favorite, perfect for those who crave a little heat. Made with tender, all-white meat chicken, each nugget is seasoned with a blend of spices and lightly breaded for a crispy, fiery kick in every bite. The balance of spice and crunch makes them both satisfying and exciting, whether you enjoy them on their own or with your favorite dipping sauce. Packed with flavor and protein, these spicy nuggets are a fun, energizing option that brings the heat without overwhelming your palate!");
 
-
-
 -- --------------------------------------------------------
 
 --
--- Table structure for table `user`
+-- Table structure for table `cart`
 --
 
-CREATE TABLE `user` (
+CREATE TABLE `cart` (
+  `cart_id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
-  `first_name` varchar(100) NOT NULL,
-  `last_name` varchar(100) NOT NULL,
-  `register_date` datetime DEFAULT NULL
+  `item_id` int(11) NOT NULL,
+  `item_amount` int(11) NOT NULL,
+  `item_variant` varchar(100) NOT NULL,
+  FOREIGN KEY (`user_id`) REFERENCES `user`(`user_id`),
+  FOREIGN KEY (`item_id`) REFERENCES `menu`(`item_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `user`
---
-
-INSERT INTO `user` (`user_id`, `first_name`, `last_name`, `register_date`) VALUES
-(1, 'Akarawin', 'Somboon', '2024-09-30 16:08:57'),
-(2, 'Kamolwit', 'Thangsupanich', '2024-09-30 16:08:57'),
-(3, 'Naris', 'Pornjirawittayakul', '2024-09-30 16:08:57'),
-(4, 'Rujiphas', 'Pakornmaneekul', '2024-09-30 16:08:57');
 
 -- --------------------------------------------------------
 
@@ -127,24 +128,14 @@ INSERT INTO `user` (`user_id`, `first_name`, `last_name`, `register_date`) VALUE
 CREATE TABLE `wishlist` (
   `cart_id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
-  `item_id` int(11) NOT NULL
+  `item_id` int(11) NOT NULL,
+  FOREIGN KEY (`user_id`) REFERENCES `user`(`user_id`),
+  FOREIGN KEY (`item_id`) REFERENCES `menu`(`item_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Indexes for dumped tables
 --
-
---
--- Indexes for table `cart`
---
-ALTER TABLE `cart`
-  ADD PRIMARY KEY (`cart_id`);
-
---
--- Indexes for table `menu`
---
-ALTER TABLE `menu`
-  ADD PRIMARY KEY (`item_id`);
 
 --
 -- Indexes for table `user`
@@ -153,14 +144,26 @@ ALTER TABLE `user`
   ADD PRIMARY KEY (`user_id`);
 
 --
+-- Indexes for table `menu`
+--
+ALTER TABLE `menu`
+  ADD PRIMARY KEY (`item_id`);
+
+--
+-- Indexes for table `cart`
+--
+ALTER TABLE `cart`
+  ADD PRIMARY KEY (`cart_id`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT for table `cart`
+-- AUTO_INCREMENT for table `user`
 --
-ALTER TABLE `cart`
-  MODIFY `cart_id` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `user`
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `menu`
@@ -169,10 +172,11 @@ ALTER TABLE `menu`
   MODIFY `item_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 
 --
--- AUTO_INCREMENT for table `user`
+-- AUTO_INCREMENT for table `cart`
 --
-ALTER TABLE `user`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+ALTER TABLE `cart`
+  MODIFY `cart_id` int(11) NOT NULL AUTO_INCREMENT;
+
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

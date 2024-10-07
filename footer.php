@@ -103,6 +103,11 @@
     ></script>
 
     <!-- Custom Javascript -->
-    <script src="index.js"></script>
+    <script src="JavaScript/notifications.js"></script>
+    <script src="JavaScript/quantity.js"></script>
+    <script src="JavaScript/cart.js"></script>
+    <script src="JavaScript/isotope.js"></script>
+    <script src="JavaScript/carousel.js"></script>
+    <script src="script.js"></script>
   </body>
 </html>

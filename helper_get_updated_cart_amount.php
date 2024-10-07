@@ -8,7 +8,7 @@ require_once('function.php');
 
 // Start output buffering
 ob_start();
-echo $item_count;
+echo $total_cart_item['total_amount'];
 ?>
 
 

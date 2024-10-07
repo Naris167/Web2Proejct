@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Mobile Shopee</title>
+    <title>Jobless Burger</title>
 
     <!-- Bootstrap CDN -->
     <link
@@ -107,7 +107,7 @@
               <span class="font-size-16 px-2 text-white">
                 <i class="fas fa-shopping-cart"></i>
               </span>
-              <span id="amount" class="px-3 py-2 rounded-pill text-dark bg-light"><?php echo$item_count;?></span>
+              <span id="amount" class="px-3 py-2 rounded-pill text-dark bg-light"><?php echo$total_cart_item['total_amount'];?></span>
             </a>
           </form>
         </div>

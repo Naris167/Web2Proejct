@@ -2,7 +2,7 @@
 <?php
     $all_menu = $product->getData('menu');
     shuffle($all_menu);
-    $itemTypes = $product->getUniqueItemTypes();
+    $itemTypes = $product->getUniqueMenuTypes();
 ?>
 
 <section id="all-menu">

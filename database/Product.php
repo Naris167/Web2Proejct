@@ -3,109 +3,103 @@
 // Use to fetch product data
 class Product
 {
-    public $db = null;
+    private $dbOps = null;
 
-    public function __construct(DBController $db)
+    public function __construct(DatabaseOperations $dbOps)
     {
-        if (!isset($db->con)) return;
-        $this->db = $db;
+        if (!$dbOps instanceof DatabaseOperations) {
+            throw new Exception("Invalid DatabaseOperations object");
+        }
+
+        $this->dbOps = $dbOps;
     }
 
     // fetch menu data using getData Method
+
+
     public function getData(string $table = 'menu', ?string $filter = null): array {
-        $resultArray = [];
-    
         try {
-            $query = "SELECT * FROM " . $this->db->con->real_escape_string($table);
-            
-            if ($filter === 'is_top_sale' || $filter === 'is_new') {
-                // Check if the column exists in the table
-                $columnCheck = $this->db->con->query("SHOW COLUMNS FROM " . $this->db->con->real_escape_string($table) . " LIKE '" . $this->db->con->real_escape_string($filter) . "'");
-                if ($columnCheck && $columnCheck->num_rows > 0) {
-                    $query .= " WHERE " . $this->db->con->real_escape_string($filter) . " = TRUE";
-                }
+            $columns = ['*'];  // Retrieve all columns
+            $conditions = null;
+    
+            if ($filter !== null) {
+                $conditions = [$filter => 'true'];
             }
-            
-            $result = $this->db->con->query($query);
-            
-            if ($result) {
-                // fetch data one by one
-                while ($item = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
-                    $resultArray[] = $item;
-                }
+    
+            $resultArray = $this->dbOps->retrieve_data($table, $columns, $conditions);
+    
+            if ($resultArray === null) {
+                error_log("[PRODUCT] Error retrieving data from $table");
+                return [];
             }
+    
+            return $resultArray;
+    
         } catch (Exception $e) {
-            // Log the error or handle it as appropriate for your application
-            error_log("Error in getData: " . $e->getMessage());
+            error_log("[PRODUCT] Error in getData: " . $e->getMessage());
+            return [];
         }
-        
-        return $resultArray;
     }
 
     // get menu using item id
-    public function getMenu($item_id = null, $table = 'menu') {
-        if (isset($item_id)) {
-            if (is_array($item_id) && !empty($item_id)) {
+    public function getMenu($item_id = null): mixed {
+        try {
+            // If item_id is not set, return an empty array
+            if (!isset($item_id)) {
+                return [];
+            }
+            
+            if (is_array($item_id)) {
                 // Handle array of item_ids
-                $placeholders = implode(',', array_fill(0, count($item_id), '?'));
-                $query = "SELECT * FROM `{$table}` WHERE item_id IN ($placeholders)";
-                
-                $stmt = $this->db->con->prepare($query);
-                if ($stmt === false) {
-                    error_log("Prepare failed: " . $this->db->con->error);
-                    return [];
-                }
-    
-                $types = str_repeat('i', count($item_id));
-                $stmt->bind_param($types, ...$item_id);
-                
-                $stmt->execute();
-                $result = $stmt->get_result();
-    
-                if ($result && $result->num_rows > 0) {
-                    $items = $result->fetch_all(MYSQLI_ASSOC);
-                    $stmt->close();
-                    return $items;
-                }
-                $stmt->close();
-            } elseif (!is_array($item_id)) {
+                $data_to_check_condition = [$item_id];
+            } else {
                 // Handle single item_id
-                $query = "SELECT * FROM `{$table}` WHERE item_id = ? LIMIT 1";
-                
-                $stmt = $this->db->con->prepare($query);
-                if ($stmt === false) {
-                    error_log("Prepare failed: " . $this->db->con->error);
-                    return [];
-                }
-    
-                $stmt->bind_param('i', $item_id);
-                $stmt->execute();
-                $result = $stmt->get_result();
-    
-                if ($result && $result->num_rows > 0) {
-                    $item = $result->fetch_assoc();
-                    $stmt->close();
-                    return $item;
-                }
-                $stmt->close();
+                $data_to_check_condition = [[$item_id]]; // Wrap in array to use IN clause
             }
-        }
         
-        return []; // Return an empty array if no items found or if $item_id is not set or empty
-    }
-
-    public function getUniqueItemTypes() {
-        $query = "SELECT DISTINCT item_type FROM menu ORDER BY item_type ASC";
-        $result = $this->db->con->query($query);
-
-        if ($result) {
-            $itemTypes = [];
-            while ($row = $result->fetch_assoc()) {
-                $itemTypes[] = $row['item_type'];
+            $resultArray = $this->dbOps->retrieve_data('menu', ['*'], ['item_id'], $data_to_check_condition);
+        
+            // If no results found, return an empty array
+            if ($resultArray === null || empty($resultArray)) {
+                error_log("[PRODUCT] Error retrieving data from `menu`");
+                return [];
             }
-            return $itemTypes;
+        
+            // If it's a single item_id (not an array), return the first (and only) result
+            if (!is_array($item_id)) {
+                return $resultArray[0];
+            }
+        
+            // Otherwise, return the entire result array
+            return $resultArray;
+        } catch (Exception $e) {
+            error_log("[PRODUCT] Error in getData: " . $e->getMessage());
+            return [];
         }
-        return [];
     }
+
+    public function getUniqueMenuTypes(): array {
+        try {
+            $table = 'menu';
+            $columns = ['item_type'];  // Retrieve all columns
+            
+            $resultArray = $this->dbOps->retrieve_data($table, $columns);
+    
+            if ($resultArray === null) {
+                error_log("[PRODUCT] Error retrieving data from $table");
+                return [];
+            }
+
+            $uniqueResultArray = array_unique(array_column($resultArray, 'item_type'));
+    
+            return $uniqueResultArray;
+    
+        } catch (Exception $e) {
+            error_log("[PRODUCT] Error in getData: " . $e->getMessage());
+            return [];
+        }
+    }
+
+
 
 }

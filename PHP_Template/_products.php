@@ -2,7 +2,7 @@
 <?php
     $item_id = $_GET['item_id']??1;
     // $test = array("1", "2", "3");
-    $item_info = $product->getMenu($item_id, 'menu');
+    $item_info = $product->getMenu($item_id);
     $discount = 10.00;
     // print_r($item_id);
     // print_r($item_info);
@@ -27,10 +27,12 @@
                     </button>
                 </div>
                 <div class="col">
-                    <form class="addToCartForm">
-                        <input type="hidden" name="item_id" value="<?php echo $item['item_id'] ?? '1'; ?>">
+                    <form id="addToCartForm" class="addToCartForm">
+                        <input type="hidden" name="item_id" value="<?php echo $item_id ?? '1'; ?>">
                         <input type="hidden" name="user_id" value="1">
-                        <button type="submit" class="btn btn-warning font-size-12">Add to Cart</button>
+                        <input type="hidden" name="item_variant">
+                        <input type="hidden" name="item_amount">
+                        <button type="submit" class="btn btn-warning form-control">Add to Cart</button>
                     </form>
                 </div>
                 </div>
@@ -120,28 +122,28 @@
                 <!-- !order-details -->
 
                 <div class="row my-3">
-                <div class="col-6">
-                    <!-- product qty section -->
-                    <div class="qty quantity-selector">
-                    <h6 class="quantity-label">Qty</h6>
-                    <div class="quantity-controls">
-                        <button class="qty-btn qty-down" data-id="Real Beef Burger">
-                            <i class="fas fa-angle-down"></i>
-                        </button>
-                        <input
-                            type="text"
-                            data-id="Real Beef Burger"
-                            class="qty_input"
-                            value="1"
-                            placeholder="1"
-                        />
-                        <button class="qty-btn qty-up" data-id="Real Beef Burger">
-                            <i class="fas fa-angle-up"></i>
-                        </button>
+                    <div class="col-6">
+                        <!-- product qty section -->
+                        <div class="qty quantity-selector">
+                            <h6 class="quantity-label">Qty</h6>
+                            <div class="quantity-controls">
+                                <button class="qty-btn qty-down" data-id="Real Beef Burger">
+                                    <i class="fas fa-angle-down"></i>
+                                </button>
+                                <input
+                                    type="text"
+                                    data-id="Real Beef Burger"
+                                    class="qty_input"
+                                    value="1"
+                                    placeholder="1"
+                                />
+                                <button class="qty-btn qty-up" data-id="Real Beef Burger">
+                                    <i class="fas fa-angle-up"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <!-- !product qty section -->
                     </div>
-                    </div>
-                    <!-- !product qty section -->
-                </div>
                 </div>
 
                 <!-- size -->

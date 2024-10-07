@@ -1,0 +1,286 @@
+/*  login template   */
+
+$primary-color: #323738;
+$secondary-color: #ff8a09;
+$white: #fff;
+$black: #333;
+
+#login-page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: $primary-color;
+  padding: 30px;
+
+  .container {
+    position: relative;
+    max-width: 850px;
+    width: 100%;
+    background: $white;
+    padding: 40px 30px;
+    box-shadow: 5px 10px 30px 0px rgba(255, 178, 83, 0.5);
+    perspective: 2700px;
+
+    .cover {
+      position: absolute;
+      top: 0;
+      left: 50%;
+      height: 100%;
+      width: 51%;
+      z-index: 98;
+      transition: all 1s ease;
+      transform-origin: left;
+      transform-style: preserve-3d;
+      backface-visibility: hidden;
+
+      .front,
+      .back {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 100%;
+      }
+
+      .back {
+        transform: rotateY(180deg);
+      }
+
+      img {
+        position: absolute;
+        height: 100%;
+        width: 100%;
+        object-fit: cover;
+        z-index: 10;
+      }
+
+      .text {
+        position: absolute;
+        z-index: 10;
+        height: 100%;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+
+        &::before {
+          content: '';
+          position: absolute;
+          height: 100%;
+          width: 100%;
+          opacity: 0.65;
+          background: #000000;
+        }
+
+        .text-1,
+        .text-2 {
+          z-index: 20;
+          font-size: 26px;
+          font-weight: 600;
+          color: $white;
+          text-align: center;
+        }
+
+        .text-2 {
+          font-size: 15px;
+          font-weight: 500;
+        }
+      }
+    }
+
+    #flip:checked ~ .cover {
+      transform: rotateY(-180deg);
+    }
+
+    #flip:checked ~ .forms .login-form {
+      pointer-events: none;
+    }
+
+    .forms {
+      height: 100%;
+      width: 100%;
+      background: $white;
+
+      .form-content {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        .login-form,
+        .signup-form {
+          width: calc(100% / 2 - 25px);
+        }
+
+        .title {
+          position: relative;
+          font-size: 24px;
+          font-weight: 500;
+          color: $black;
+
+          &:before {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            height: 3px;
+            width: 25px;
+            background: $primary-color;
+          }
+        }
+
+        .signup-form .title:before {
+          width: 20px;
+        }
+
+        .input-boxes {
+          margin-top: 30px;
+
+          .input-box {
+            display: flex;
+            align-items: center;
+            height: 50px;
+            width: 100%;
+            margin: 10px 0;
+            position: relative;
+
+            input {
+              height: 100%;
+              width: 100%;
+              outline: none;
+              border: none;
+              padding: 0 30px;
+              font-size: 16px;
+              font-weight: 500;
+              border-bottom: 2px solid rgba(0, 0, 0, 0.2);
+              transition: all 0.3s ease;
+
+              &:focus,
+              &:valid {
+                border-color: $primary-color;
+              }
+            }
+
+            i {
+              position: absolute;
+              color: $primary-color;
+              font-size: 17px;
+            }
+
+            position: relative;
+          
+            &.password-input {
+              .password-field {
+                padding-right: 40px;
+              }
+
+              .password-toggle {
+                position: absolute;
+                right: 30px;
+                top: 40%;
+                transform: translateY(-50%);
+                cursor: pointer;
+                color: $primary-color;
+                font-size: 18px;
+                z-index: 10;
+
+                &:hover {
+                  color: $secondary-color;
+                }
+
+                .fa-eye {
+                  display: none;
+                }
+              }
+            }
+          }
+        }
+
+        .text {
+          font-size: 14px;
+          font-weight: 500;
+          color: $black;
+
+          a {
+            text-decoration: none;
+
+            &:hover {
+              text-decoration: underline;
+            }
+          }
+        }
+
+        .button {
+          margin-top: 40px;
+          width: 100%; // Ensure the button container spans full width
+        
+          input[type="submit"] {
+            width: 100%;
+            color: $white;
+            background: $primary-color;
+            border: none;
+            border-radius: 6px;
+            padding: 10px 0; // Adjust this value as needed
+            cursor: pointer;
+            transition: background-color 0.4s ease;
+            font-size: 16px; // Adjust as needed
+            font-weight: 500; // Adjust as needed
+        
+            &:hover {
+              background-color: $secondary-color;
+            }
+          }
+        }
+
+        label {
+          color: $secondary-color;
+          cursor: pointer;
+
+          &:hover {
+            text-decoration: underline;
+          }
+        }
+
+        .login-text,
+        .sign-up-text {
+          text-align: center;
+          margin-top: 25px;
+        }
+      }
+    }
+
+    #flip {
+      display: none;
+    }
+  }
+
+  @media (max-width: 300px) {
+    .container {
+      .cover {
+        display: none;
+      }
+
+      .form-content {
+        .login-form,
+        .signup-form {
+          width: 100%;
+        }
+
+        .signup-form {
+          display: none;
+        }
+      }
+
+      #flip:checked ~ .forms {
+        .signup-form {
+          display: block;
+        }
+
+        .login-form {
+          display: none;
+        }
+      }
+    }
+  }
+}

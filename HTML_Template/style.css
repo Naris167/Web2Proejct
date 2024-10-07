@@ -252,4 +252,234 @@ button, button:focus {
   background-color: #f0f0f0;
 }
 
+/*  login template   */
+#login-page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #323738;
+  padding: 30px;
+}
+#login-page .container {
+  position: relative;
+  max-width: 850px;
+  width: 100%;
+  background: #fff;
+  padding: 40px 30px;
+  box-shadow: 5px 10px 30px 0px rgba(255, 178, 83, 0.5);
+  perspective: 2700px;
+}
+#login-page .container .cover {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  height: 100%;
+  width: 51%;
+  z-index: 98;
+  transition: all 1s ease;
+  transform-origin: left;
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+}
+#login-page .container .cover .front,
+#login-page .container .cover .back {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+}
+#login-page .container .cover .back {
+  transform: rotateY(180deg);
+}
+#login-page .container .cover img {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  z-index: 10;
+}
+#login-page .container .cover .text {
+  position: absolute;
+  z-index: 10;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+#login-page .container .cover .text::before {
+  content: "";
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  opacity: 0.65;
+  background: #000000;
+}
+#login-page .container .cover .text .text-1,
+#login-page .container .cover .text .text-2 {
+  z-index: 20;
+  font-size: 26px;
+  font-weight: 600;
+  color: #fff;
+  text-align: center;
+}
+#login-page .container .cover .text .text-2 {
+  font-size: 15px;
+  font-weight: 500;
+}
+#login-page .container #flip:checked ~ .cover {
+  transform: rotateY(-180deg);
+}
+#login-page .container #flip:checked ~ .forms .login-form {
+  pointer-events: none;
+}
+#login-page .container .forms {
+  height: 100%;
+  width: 100%;
+  background: #fff;
+}
+#login-page .container .forms .form-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+#login-page .container .forms .form-content .login-form,
+#login-page .container .forms .form-content .signup-form {
+  width: calc(50% - 25px);
+}
+#login-page .container .forms .form-content .title {
+  position: relative;
+  font-size: 24px;
+  font-weight: 500;
+  color: #333;
+}
+#login-page .container .forms .form-content .title:before {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 3px;
+  width: 25px;
+  background: #323738;
+}
+#login-page .container .forms .form-content .signup-form .title:before {
+  width: 20px;
+}
+#login-page .container .forms .form-content .input-boxes {
+  margin-top: 30px;
+}
+#login-page .container .forms .form-content .input-boxes .input-box {
+  display: flex;
+  align-items: center;
+  height: 50px;
+  width: 100%;
+  margin: 10px 0;
+  position: relative;
+  position: relative;
+}
+#login-page .container .forms .form-content .input-boxes .input-box input {
+  height: 100%;
+  width: 100%;
+  outline: none;
+  border: none;
+  padding: 0 30px;
+  font-size: 16px;
+  font-weight: 500;
+  border-bottom: 2px solid rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+}
+#login-page .container .forms .form-content .input-boxes .input-box input:focus, #login-page .container .forms .form-content .input-boxes .input-box input:valid {
+  border-color: #323738;
+}
+#login-page .container .forms .form-content .input-boxes .input-box i {
+  position: absolute;
+  color: #323738;
+  font-size: 17px;
+}
+#login-page .container .forms .form-content .input-boxes .input-box.password-input .password-field {
+  padding-right: 40px;
+}
+#login-page .container .forms .form-content .input-boxes .input-box.password-input .password-toggle {
+  position: absolute;
+  right: 30px;
+  top: 40%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  color: #323738;
+  font-size: 18px;
+  z-index: 10;
+}
+#login-page .container .forms .form-content .input-boxes .input-box.password-input .password-toggle:hover {
+  color: #ff8a09;
+}
+#login-page .container .forms .form-content .input-boxes .input-box.password-input .password-toggle .fa-eye {
+  display: none;
+}
+#login-page .container .forms .form-content .text {
+  font-size: 14px;
+  font-weight: 500;
+  color: #333;
+}
+#login-page .container .forms .form-content .text a {
+  text-decoration: none;
+}
+#login-page .container .forms .form-content .text a:hover {
+  text-decoration: underline;
+}
+#login-page .container .forms .form-content .button {
+  margin-top: 40px;
+  width: 100%;
+}
+#login-page .container .forms .form-content .button input[type=submit] {
+  width: 100%;
+  color: #fff;
+  background: #323738;
+  border: none;
+  border-radius: 6px;
+  padding: 10px 0;
+  cursor: pointer;
+  transition: background-color 0.4s ease;
+  font-size: 16px;
+  font-weight: 500;
+}
+#login-page .container .forms .form-content .button input[type=submit]:hover {
+  background-color: #ff8a09;
+}
+#login-page .container .forms .form-content label {
+  color: #ff8a09;
+  cursor: pointer;
+}
+#login-page .container .forms .form-content label:hover {
+  text-decoration: underline;
+}
+#login-page .container .forms .form-content .login-text,
+#login-page .container .forms .form-content .sign-up-text {
+  text-align: center;
+  margin-top: 25px;
+}
+#login-page .container #flip {
+  display: none;
+}
+@media (max-width: 300px) {
+  #login-page .container .cover {
+    display: none;
+  }
+  #login-page .container .form-content .login-form,
+  #login-page .container .form-content .signup-form {
+    width: 100%;
+  }
+  #login-page .container .form-content .signup-form {
+    display: none;
+  }
+  #login-page .container #flip:checked ~ .forms .signup-form {
+    display: block;
+  }
+  #login-page .container #flip:checked ~ .forms .login-form {
+    display: none;
+  }
+}
+
 /*# sourceMappingURL=style.css.map */

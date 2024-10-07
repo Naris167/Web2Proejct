@@ -490,9 +490,6 @@ WHERE m.item_id = [specific_item_id];
 
 
 
-1. Add one more page
-2. cookies and sessions
-3. dynamic form
 
 
 
@@ -1406,3 +1403,37 @@ public function updateCartItemQty($userid, $itemid, $variant, $amount): bool {
 ```
 
 When you give me the code for this task, you don't have to provide everything to make it a complete file, but just tell me the part of the code that I have to put in the project.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+1. Add login and register page
+2. cookies and sessions
+3. dynamic form for register page
+4. Implement client-side validation using JavaScript. (for user session?)
+5. Advanced form validation and error handling.
+6. User authentication (registration/login system) using sessions or cookies.

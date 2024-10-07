@@ -39,6 +39,12 @@ function initAllModules() {
     console.error('Cart module not loaded');
   }
 
+  if (typeof window.initLoginFunctionality === 'function') {
+    window.initLoginFunctionality();
+  } else {
+    console.error('Login module not loaded');
+  }
+
   initSizeSelection();
 }
 

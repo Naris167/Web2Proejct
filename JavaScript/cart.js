@@ -2,7 +2,7 @@ function initCartFunctionality() {
     $(".addToCartForm").on("submit", function (e) {
       e.preventDefault();
       var form = $(this);
-      var userId = form.find('input[name="user_id"]').val();
+      var userId = form.find('input[name="current_user"]').val();
       var itemId = form.find('input[name="item_id"]').val();
       var itemVariant = form.find('input[name="item_variant"]').val();
       var itemAmount = form.find('input[name="item_amount"]').val();
@@ -15,7 +15,7 @@ function initCartFunctionality() {
       e.stopPropagation();
   
       var form = $(this).closest("form");
-      var userId = form.find('input[name="user_id"]').val();
+      var userId = form.find('input[name="current_user"]').val();
       var itemId = form.find('input[name="item_id"]').val();
       var itemVariant = form.find('input[name="item_variant"]').val();
       var itemAmount = form.find('input[name="item_amount"]').val();
@@ -33,10 +33,11 @@ function initCartFunctionality() {
     $.ajax({
       url: "helper_add_to_cart.php",
       method: "POST",
-      data: { user_id: userId, item_id: itemId, item_variant: itemVariant, item_amount: itemAmount },
+      data: { current_user: userId, item_id: itemId, item_variant: itemVariant, item_amount: itemAmount },
       dataType: "text",
       success: function (responseText) {
         try {
+          console.log(responseText);
           var data = JSON.parse(responseText);
           if (data.success) {
             showNotification("Item added to cart successfully!", "success");
@@ -59,7 +60,7 @@ function initCartFunctionality() {
     $.ajax({
       url: "helper_delete_from_cart.php",
       method: "POST",
-      data: { user_id: userId, item_id: itemId, item_variant: itemVariant, item_amount: itemAmount },
+      data: { current_user: userId, item_id: itemId, item_variant: itemVariant, item_amount: itemAmount },
       dataType: "text",
       success: function (responseText) {
         try {
@@ -84,7 +85,7 @@ function initCartFunctionality() {
 
   function updateCartItemQuantity($container) {
     const $form = $container.closest('.quantity-selector-container').find('.deleteFromCartForm');
-    const userId = $form.find('input[name="user_id"]').val();
+    const userId = $form.find('input[name="current_user"]').val();
     const itemId = $form.find('input[name="item_id"]').val();
     const itemVariant = $form.find('input[name="item_variant"]').val();
     const itemAmount = $container.find('.qty_input').val();
@@ -94,7 +95,7 @@ function initCartFunctionality() {
     $.ajax({
       url: "helper_update_cart_quantity.php",
       method: "POST",
-      data: { user_id: userId, item_id: itemId, item_variant: itemVariant, item_amount: itemAmount },
+      data: { current_user: userId, item_id: itemId, item_variant: itemVariant, item_amount: itemAmount },
       dataType: "json",
       success: function(response) {
         console.log("Update response:", response);

@@ -18,6 +18,8 @@
     $total_cart_item = $cart->getTotalCartAmount('1');
     // print_r($item_count);
 
+    $current_user = '1';
+
 
     function generateStarRating($rating): string {
         $fullStars = floor($rating);

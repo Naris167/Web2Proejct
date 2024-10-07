@@ -29,7 +29,7 @@
                 <div class="col">
                     <form id="addToCartForm" class="addToCartForm">
                         <input type="hidden" name="item_id" value="<?php echo $item_id ?? '1'; ?>">
-                        <input type="hidden" name="user_id" value="1">
+                        <input type="hidden" name="current_user" value="<?php echo $current_user; ?>">
                         <input type="hidden" name="item_variant">
                         <input type="hidden" name="item_amount">
                         <button type="submit" class="btn btn-warning form-control">Add to Cart</button>

@@ -38,7 +38,7 @@
                                     </div>
                                     <form class="addToCartForm">
                                         <input type="hidden" name="item_id" value="<?php echo $item['item_id'] ?? '1'; ?>">
-                                        <input type="hidden" name="user_id" value="1">
+                                        <input type="hidden" name="current_user" value="<?php echo $current_user; ?>">
                                         <input type="hidden" name="item_variant" value="L">
                                         <input type="hidden" name="item_amount" value=1>
                                         <button type="submit" class="btn btn-warning font-size-12">Add to Cart</button>

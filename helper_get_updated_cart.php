@@ -72,7 +72,7 @@ ob_start();
                                 <form class="deleteFromCartForm">
                                     <input type="hidden" name="item_id" value="<?php echo $item['item_id']; ?>">
                                     <input type="hidden" name="item_variant" value="<?php echo $item['item_variant']; ?>">
-                                    <input type="hidden" name="user_id" value="1">
+                                    <input type="hidden" name="current_user" value="<?php echo $current_user?>">
                                     <button type="submit" class="btn font-baloo text-danger px-3 border-right">Delete</button>
                                 </form>
                                 <button type="submit" class="btn font-baloo text-danger">

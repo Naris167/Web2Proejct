@@ -5,7 +5,7 @@ require_once('function.php');
 
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
     try {
-        $userId = $_POST['user_id'];
+        $userId = $_POST['current_user'];
         $itemId = $_POST['item_id'];
         $itemVariant = $_POST['item_variant'];
         $itemAmount = intval($_POST['item_amount']);

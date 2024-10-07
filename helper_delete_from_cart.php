@@ -6,7 +6,7 @@ require_once('function.php');
 
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
     try {
-        $result = $cart->deleteFromCart($_POST['user_id'], $_POST['item_id'], $_POST['item_variant']);
+        $result = $cart->deleteFromCart($_POST['current_user'], $_POST['item_id'], $_POST['item_variant']);
         
         header('Content-Type: application/json');
         echo json_encode(['success' => $result]);

@@ -91,6 +91,7 @@
     <script src="JavaScript/isotope.js"></script>
     <script src="JavaScript/carousel.js"></script>
     <script src="JavaScript/auth.js"></script>
+    <script src="JavaScript/scroll.js"></script>
     <script src="script.js"></script>
 
     <!-- PHP Include -->
@@ -115,7 +116,6 @@
               </span>
           </a>
           <a href="#" id="LogoutButton" class="px-3 border-right border-left text-dark">Logout</a>
-          <a href="#" class="px-3 border-right text-dark">Whishlist (0)</a>
         </div>
       </div>
 
@@ -136,26 +136,16 @@
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav m-auto font-rubik">
             <li class="nav-item active">
-              <a class="nav-link" href="#">On Sale</a>
+              <a class="nav-link scroll-btn" href="#top-sale">Top Sale</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Category</a>
+              <a class="nav-link scroll-btn" href="#all-menu">Category</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#"
-                >Products <i class="fas fa-chevron-down"></i
-              ></a>
+              <a class="nav-link scroll-btn" href="#new-menu">New Menu</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Blog</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#"
-                >Category <i class="fas fa-chevron-down"></i
-              ></a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Coming Soon</a>
+              <a class="nav-link scroll-btn" href="#blogs">Blog</a>
             </li>
           </ul>
           <form action="#" class="font-size-14 font-rale">

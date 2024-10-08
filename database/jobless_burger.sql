@@ -43,11 +43,14 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`email`, `password_hash`,`first_name`, `last_name`) VALUES
-('2111240001@students.stamford.edu', '$2y$10$jSsovddlaTm87KRDHmG5V.yMvqS4AAl1qrTsA/vItsdTueEqQ0fOq', 'Akarawin', 'Somboon'),
-('2106150005@students.stamford.edu', '$2y$10$SDBQ7LBPSLVQlEIJm5wE7..bMC7dYTqUj.YN71ovQDnlRiT6KT1ve', 'Kamolwit', 'Thangsupanich'),
-('2106010007@students.stamford.edu', '$2y$10$ZOFdTf6ubyIXyQ48dgOmie/ZFioJMiOZ2Nr.mg8P1dYTjfyNXytdC', 'Naris', 'Pornjirawittayakul'),
-('2207110046@students.stamford.edu', '$2y$10$3r1YgaL.RN698ACIxMWuxeA5Rj9419peacSjUz6LsvjNoB.7dIhkC', 'Rujiphas', 'Pakornmaneekul');
-
+('2111240001@students.stamford.edu', '$2y$10$d/WGN6XmgwBuQWZOX1ZLHOsG52aQ.Tq.0R5Dje/qogkVBbfEJEfZe', 'Akarawin', 'Somboon'),
+('2106150005@students.stamford.edu', '$2y$10$JLZbevcNMJ1D/XeJcnw1seaC3K9o/s2X645uZwhY5967NGY6b.kCy', 'Kamolwit', 'Thangsupanich'),
+('2106010007@students.stamford.edu', '$2y$10$BdnBTuOxO75AyJDT6wJ4xunFstG3U53vtj17wIkQbIiDsNSKHJlGS', 'Naris', 'Pornjirawittayakul'),
+('2207110046@students.stamford.edu', '$2y$10$bJsmw8C182ymNAs2o461sOeC1qt2vW.tuGqpvw7WhYckplUKs83G2', 'Rujiphas', 'Pakornmaneekul');
+-- Win@2111240001
+-- Jade@2106150005
+-- Naris@2106010007
+-- Saint@2207110046
 -- --------------------------------------------------------
 
 --
@@ -125,17 +128,6 @@ CREATE TABLE `cart` (
 
 -- --------------------------------------------------------
 
---
--- Table structure for table `wishlist`
---
-
-CREATE TABLE `wishlist` (
-  `cart_id` int(11) NOT NULL,
-  `user_id` int(11) NOT NULL,
-  `item_id` int(11) NOT NULL,
-  FOREIGN KEY (`user_id`) REFERENCES `user`(`user_id`),
-  FOREIGN KEY (`item_id`) REFERENCES `menu`(`item_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Indexes for dumped tables

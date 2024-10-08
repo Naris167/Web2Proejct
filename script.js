@@ -45,7 +45,14 @@ function initAllModules() {
     console.error('Login module not loaded');
   }
 
+  if (typeof window.initScrollFunctionality === 'function') {
+    window.initScrollFunctionality();
+  } else {
+    console.error('Scroll module not loaded');
+  }
+
   initSizeSelection();
+  initScrollFunctionality()
 }
 
 function initSizeSelection() {

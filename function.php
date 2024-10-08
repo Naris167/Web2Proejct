@@ -5,9 +5,6 @@
     require('database/Product.php');
     require('database/Cart.php');
     require('database/Auth.php');
-    // require_once('session_auth.php');
-
-    
 
     // Innitialized database connection
     $dbController = new DBController();
@@ -29,16 +26,10 @@
 
     $current_user = $_SESSION['id'];
 
-
-
     //Get cart item for user
     $cart_items = $cart->getCartItem($current_user);
     $total_cart_item = $cart->getTotalCartAmount($current_user);
     // print_r($item_count);
-
-    
-
-
 
 
     function generateStarRating($rating): string {

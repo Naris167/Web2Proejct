@@ -235,18 +235,18 @@ class Auth {
 }
 
 // Generate dummy account
-// echo'2111240001';
+// echo'Win@2111240001';
 // echo'<br>';
-// print_r(password_hash('2111240001', PASSWORD_DEFAULT));
+// print_r(password_hash('Win@2111240001', PASSWORD_DEFAULT));
 // echo'<br>';
-// echo'2106150005';
+// echo'Jade@2106150005';
 // echo'<br>';
-// print_r(password_hash('2106150005', PASSWORD_DEFAULT));
+// print_r(password_hash('Jade@2106150005', PASSWORD_DEFAULT));
 // echo'<br>';
-// echo'2106010007';
+// echo'Naris@2106010007';
 // echo'<br>';
-// print_r(password_hash('2106010007', PASSWORD_DEFAULT));
+// print_r(password_hash('Naris@2106010007', PASSWORD_DEFAULT));
 // echo'<br>';
-// echo'2207110046';
+// echo'Saint@2207110046';
 // echo'<br>';
-// print_r(password_hash('2207110046', PASSWORD_DEFAULT));
+// print_r(password_hash('Saint@2207110046', PASSWORD_DEFAULT));

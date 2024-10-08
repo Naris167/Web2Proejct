@@ -81,7 +81,7 @@ function validateFormData(formData) {
 function showError(inputId, message) {
     var $input = $(inputId);
     removeTooltip($input); // Remove existing tooltip before adding a new one
-    var $tooltip = $('<div class="error-tooltip hide"><i class="fas fa-exclamation-circle"></i><span>' + message + '</span></div>');
+    var $tooltip = $('<div class="error-tooltip hide"><div class="icon-circle"><i class="fas fa-exclamation-circle text-warning-custom"></i></div><span>' + message + '</span></div>');
     $input.after($tooltip);
 
     // Force reflow to ensure the 'hide' class is applied before removing it
@@ -91,6 +91,7 @@ function showError(inputId, message) {
         $tooltip.removeClass('hide');
     });
 }
+
 
 function removeTooltip($input) {
     var $tooltip = $input.next('.error-tooltip');
@@ -109,6 +110,7 @@ function removeAllTooltips() {
     }, 300);
 }
 
+
 function addValidationStyles() {
     if ($('#validation-styles').length === 0) {
         $('<style>')
@@ -118,9 +120,9 @@ function addValidationStyles() {
                 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap');
                 .error-tooltip {
                     font-family: 'Roboto', sans-serif;
-                    color: #721c24;
-                    background-color: #f8d7da;
-                    border: 1px solid #f5c6cb;
+                    color: #333;
+                    background-color: #fafafa;
+                    border: 1px solid #ccc;
                     border-radius: 4px;
                     padding: 8px 12px 8px 36px;
                     font-size: 0.9em;
@@ -143,12 +145,26 @@ function addValidationStyles() {
                     transform: translateY(-10px);
                     pointer-events: none;
                 }
-                .error-tooltip i {
+                .error-tooltip .icon-circle {
                     position: absolute;
                     left: 12px;
                     top: 50%;
                     transform: translateY(-50%);
+                    width: 10px;
+                    height: 10px;
+                    background-color: #333;
+                    border-radius: 50%;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                }
+                .error-tooltip i {
                     font-size: 1.1em;
+                    position: relative;
+                    z-index: 1;
+                }
+                .text-warning-custom {
+                    color: #ffa807 !important;
                 }
                 .error-tooltip span {
                     display: inline-block;

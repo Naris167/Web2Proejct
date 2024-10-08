@@ -1,7 +1,4 @@
-<!DOCTYPE html>
 <?php
-$form_id = 'signup_form_' . uniqid();
-
 require_once './database/Auth.php';
 require_once './database/DBController.php';
 require_once './database/DatabaseOperations.php';
@@ -15,35 +12,27 @@ if ($auth->isLoggedIn() || $auth->checkAutoLogin()) {
     header("Location: home.php");
     exit();
 }
-
-
-
 ?>
 
+<!DOCTYPE html>
 <html lang="en" dir="ltr">
-  <head>
+<head>
     <meta charset="UTF-8" />
-    <title>Login and Registration Form in HTML & CSS | CodingLab</title>
-    <link rel="stylesheet" href="style.css" />
-    <!-- Fontawesome CDN Link -->
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css"
-      integrity="sha256-h20CPZ0QyXlBuAw7A+KluUYx/3pK+c7lYEpqLTlxjYQ="
-      crossorigin="anonymous"
-    />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  </head>
-  <script
-    src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
-    integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
-    crossorigin="anonymous"
-    referrerpolicy="no-referrer">
-  </script>
-  <script src="JavaScript/auth.js"></script>
-  <script src="JavaScript/notifications.js"></script>
-  <script src="JavaScript/validation.js"></script>
-  <script src="script.js"></script>
+    <title>Login and Registration Form in HTML & CSS | CodingLab</title>
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" integrity="sha256-h20CPZ0QyXlBuAw7A+KluUYx/3pK+c7lYEpqLTlxjYQ=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous" />
+    
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="JavaScript/auth.js"></script>
+    <script src="JavaScript/notifications.js"></script>
+    <script src="JavaScript/validation.js"></script>
+    <script src="script.js"></script>
+</head>
   <body id="login-page">
     <div class="container">
       <input type="checkbox" id="flip" />

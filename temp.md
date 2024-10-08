@@ -1863,3 +1863,82 @@ This function will be used for form data validation. However this function shoul
 </div>
 ```
 
+
+
+You see that showError function have an icon class="fas fa-exclamation-circle". Can you modify the html in this function and the css in the next function so that there is an circle behind the icon. I mean the icon must be on top of the smaller circle. and that circle should have black color.
+
+```js
+function showError(inputId, message) {
+    var $input = $(inputId);
+    removeTooltip($input); // Remove existing tooltip before adding a new one
+    var $tooltip = $('<div class="error-tooltip hide"><i class="fas fa-exclamation-circle text-warning-custom"></i><span>' + message + '</span></div>');
+    $input.after($tooltip);
+
+    // Force reflow to ensure the 'hide' class is applied before removing it
+    $tooltip[0].offsetHeight;
+
+    requestAnimationFrame(function() {
+        $tooltip.removeClass('hide');
+    });
+}
+
+function addValidationStyles() {
+    if ($('#validation-styles').length === 0) {
+        $('<style>')
+            .attr('id', 'validation-styles')
+            .prop('type', 'text/css')
+            .html(`
+                @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap');
+                .error-tooltip {
+                    font-family: 'Roboto', sans-serif;
+                    color: #333;
+                    background-color: #fff;
+                    border: 1px solid #ccc;
+                    border-radius: 4px;
+                    padding: 8px 12px 8px 36px;
+                    font-size: 0.9em;
+                    font-weight: 500;
+                    margin-top: 90px;
+                    position: absolute;
+                    z-index: 1000;
+                    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+                    opacity: 1;
+                    transform: translateY(0);
+                    transition: opacity 0.3s ease, transform 0.3s ease;
+                    box-sizing: border-box;
+                    width: auto;
+                    max-width: 100%;
+                    left: 0;
+                    white-space: nowrap;
+                }
+                .error-tooltip.hide {
+                    opacity: 0;
+                    transform: translateY(-10px);
+                    pointer-events: none;
+                }
+                .error-tooltip i {
+                    position: absolute;
+                    left: 12px;
+                    top: 50%;
+                    transform: translateY(-50%);
+                    font-size: 1.1em;
+                }
+                .text-warning-custom {
+                    color: #ffa807 !important;
+                }
+                .error-tooltip span {
+                    display: inline-block;
+                    white-space: normal;
+                    word-break: break-word;
+                }
+                .input-box {
+                    position: relative;
+                    margin-bottom: 20px;
+                }
+            `)
+            .appendTo('head');
+    }
+}
+
+
+```

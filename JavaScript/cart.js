@@ -31,7 +31,7 @@ function initCartFunctionality() {
   
   function addToCart(userId, itemId, itemVariant, itemAmount) {
     $.ajax({
-      url: "helper_add_to_cart.php",
+      url: "php_template/helpers/helper_add_to_cart.php",
       method: "POST",
       data: { current_user: userId, item_id: itemId, item_variant: itemVariant, item_amount: itemAmount },
       dataType: "text",
@@ -58,7 +58,7 @@ function initCartFunctionality() {
   
   function deleteCartItem(userId, itemId, itemVariant, itemAmount) {
     $.ajax({
-      url: "helper_delete_from_cart.php",
+      url: "php_template/helpers/helper_delete_from_cart.php",
       method: "POST",
       data: { current_user: userId, item_id: itemId, item_variant: itemVariant, item_amount: itemAmount },
       dataType: "text",
@@ -93,7 +93,7 @@ function initCartFunctionality() {
     console.log("Updating cart item:", { userId, itemId, itemVariant, itemAmount });
   
     $.ajax({
-      url: "helper_update_cart_quantity.php",
+      url: "php_template/helpers/helper_update_cart_quantity.php",
       method: "POST",
       data: { current_user: userId, item_id: itemId, item_variant: itemVariant, item_amount: itemAmount },
       dataType: "json",
@@ -115,7 +115,7 @@ function initCartFunctionality() {
   
   function updateCart() {
     $.ajax({
-      url: "helper_get_updated_cart.php",
+      url: "php_template/helpers/helper_get_updated_cart.php",
       method: "GET",
       dataType: "html",
       success: function (response) {
@@ -128,7 +128,7 @@ function initCartFunctionality() {
       },
     });
     $.ajax({
-      url: "helper_get_updated_cart_amount.php",
+      url: "php_template/helpers/helper_get_updated_cart_amount.php",
       method: "GET",
       dataType: "html",
       success: function (response) {

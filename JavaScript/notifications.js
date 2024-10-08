@@ -2,15 +2,22 @@ var notificationCount = 0;
 var notifications = [];
 
 function showNotification(message, type = "success") {
-  var backgroundColor, borderColor, icon;
+  var backgroundColor, borderColor, icon, textColor;
   if (type === "success") {
     backgroundColor = "#4CAF50";
     borderColor = "#45a049";
     icon = "✓";
+    textColor = "white";
+  } else if (type === "warning") {
+    backgroundColor = "#FFA500";  // Orange-yellow color
+    borderColor = "#FF8C00";      // Darker orange for contrast
+    icon = "⚠";
+    textColor = "#333333";        // Dark gray text for contrast
   } else {
     backgroundColor = "#f44336";
     borderColor = "#da190b";
     icon = "✕";
+    textColor = "white";
   }
 
   var notification = $("<div></div>")
@@ -21,7 +28,7 @@ function showNotification(message, type = "success") {
       right: "20px",
       padding: "15px 20px",
       backgroundColor: backgroundColor,
-      color: "white",
+      color: textColor,
       borderRadius: "5px",
       boxShadow: "0 4px 8px rgba(0,0,0,0.2)",
       zIndex: 9999,

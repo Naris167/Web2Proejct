@@ -1,0 +1,11 @@
+<?php
+  ob_start();
+  include('header.php');
+  include('./PHP_Template/_banner-area.php');
+  include('./PHP_Template/_top-sale.php');
+  include('./PHP_Template/_all-menu.php');
+  include('./PHP_Template/_banner-adds.php');
+  include('./PHP_Template/_new-menu.php');
+  include('./PHP_Template/_blogs.php');
+  include('footer.php');
+?>

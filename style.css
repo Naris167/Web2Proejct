@@ -361,7 +361,7 @@ button, button:focus {
   position: absolute;
   left: 0;
   bottom: 0;
-  height: 3px;
+  height: 0px;
   width: 25px;
   background: #323738;
 }

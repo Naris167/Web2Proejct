@@ -4,6 +4,10 @@
     require('database/DBController.php');
     require('database/Product.php');
     require('database/Cart.php');
+    require('database/Auth.php');
+    // require_once('session_auth.php');
+
+    
 
     // Innitialized database connection
     $dbController = new DBController();
@@ -12,13 +16,29 @@
     // Innitialized classes
     $cart = new Cart($dbOps);
     $product = new Product($dbOps);
+    $auth = new Auth($dbOps);
+
+    // Check if user is logged in, if not, try auto-login
+    if (!$auth->isLoggedIn()) {
+        // User is not logged in, try auto-login
+        if (!$auth->checkAutoLogin()) {
+            // Auto-login failed, redirect to login page
+            $auth->requireLogin();
+        }
+    }
+
+    $current_user = $_SESSION['id'];
+
+
 
     //Get cart item for user
-    $cart_items = $cart->getCartItem('1');
-    $total_cart_item = $cart->getTotalCartAmount('1');
+    $cart_items = $cart->getCartItem($current_user);
+    $total_cart_item = $cart->getTotalCartAmount($current_user);
     // print_r($item_count);
 
-    $current_user = '1';
+    
+
+
 
 
     function generateStarRating($rating): string {

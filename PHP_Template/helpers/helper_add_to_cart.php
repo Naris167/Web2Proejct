@@ -1,12 +1,12 @@
 <?php
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
-require_once('function.php');
+require_once('../../function.php');
 
 
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
     try {
-        $result = $cart->deleteFromCart($_POST['current_user'], $_POST['item_id'], $_POST['item_variant']);
+        $result = $cart->addToCart($_POST['current_user'], $_POST['item_id'], $_POST['item_variant'], $_POST['item_amount']);
         
         header('Content-Type: application/json');
         echo json_encode(['success' => $result]);

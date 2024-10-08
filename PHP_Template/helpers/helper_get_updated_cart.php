@@ -4,7 +4,7 @@ if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
 
-require_once('function.php');
+require_once('../../function.php');
 $total_price = 0;
 
 // Start output buffering
@@ -21,7 +21,7 @@ ob_start();
                 // If cart is empty, show a message
                 if ($total_cart_item['total_amount'] == 0) {
                     // echo '<p class="text-center mt-3">Your cart is empty.</p>';
-                    include('./PHP_Template/notFound/_cart_notFound.php');
+                    include('../notFound/_cart_notFound.php');
                 }
 
                 // print_r($cart_items);

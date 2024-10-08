@@ -28,21 +28,25 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `user` (
-  `user_id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `email` varchar(255) NOT NULL,
+  `password_hash` varchar(255) NOT NULL,
   `first_name` varchar(100) NOT NULL,
   `last_name` varchar(100) NOT NULL,
-  `register_date` datetime DEFAULT NULL
+  `register_date` datetime DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `email` (`email`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `user`
 --
 
-INSERT INTO `user` (`user_id`, `first_name`, `last_name`, `register_date`) VALUES
-(1, 'Akarawin', 'Somboon', '2024-09-30 16:08:57'),
-(2, 'Kamolwit', 'Thangsupanich', '2024-09-30 16:08:57'),
-(3, 'Naris', 'Pornjirawittayakul', '2024-09-30 16:08:57'),
-(4, 'Rujiphas', 'Pakornmaneekul', '2024-09-30 16:08:57');
+INSERT INTO `user` (`email`, `password_hash`,`first_name`, `last_name`) VALUES
+('2111240001@students.stamford.edu', '$2y$10$jSsovddlaTm87KRDHmG5V.yMvqS4AAl1qrTsA/vItsdTueEqQ0fOq', 'Akarawin', 'Somboon'),
+('2106150005@students.stamford.edu', '$2y$10$SDBQ7LBPSLVQlEIJm5wE7..bMC7dYTqUj.YN71ovQDnlRiT6KT1ve', 'Kamolwit', 'Thangsupanich'),
+('2106010007@students.stamford.edu', '$2y$10$ZOFdTf6ubyIXyQ48dgOmie/ZFioJMiOZ2Nr.mg8P1dYTjfyNXytdC', 'Naris', 'Pornjirawittayakul'),
+('2207110046@students.stamford.edu', '$2y$10$3r1YgaL.RN698ACIxMWuxeA5Rj9419peacSjUz6LsvjNoB.7dIhkC', 'Rujiphas', 'Pakornmaneekul');
 
 -- --------------------------------------------------------
 

@@ -1437,3 +1437,429 @@ When you give me the code for this task, you don't have to provide everything to
 4. Implement client-side validation using JavaScript. (for user session?)
 5. Advanced form validation and error handling.
 6. User authentication (registration/login system) using sessions or cookies.
+
+
+
+
+
+
+
+
+
+
+
+
+
+So I have these 2 form in my login page
+This one is for login 
+```html
+<form action="#">
+  <div class="input-boxes">
+    <div class="input-box">
+      <i class="fas fa-envelope"></i>
+      <input class="font-rubik" type="text" placeholder="Enter your email" required
+      />
+    </div>
+
+    <div class="input-box password-input">
+      <i class="fas fa-lock"></i>
+      <input type="password" class="password-field font-rubik" placeholder="Enter your password" required
+      />
+      <span class="password-toggle">
+        <i class="fas fa-eye-slash"></i>
+        <i class="fas fa-eye"></i>
+      </span>
+    </div>
+
+    <div class="text font-rubik">
+      <a href="#">Forgot password?</a>
+    </div>
+    <div class="button input-box">
+      <input class="font-rubik" type="submit" value="Login" />
+    </div>
+    <div class="text sign-up-text font-rubik">
+      Don't have an account? <label for="flip">Sigup now</label>
+    </div>
+  </div>
+</form>
+```
+This one is for sign up
+```html
+<form action="#">
+  <div class="input-boxes">
+    <div class="input-box">
+      <i class="fas fa-user"></i>
+      <input type="text" placeholder="Enter your name" required />
+    </div>
+    <div class="input-box">
+      <i class="fas fa-envelope"></i>
+      <input class="font-rubik" type="text" placeholder="Enter your email" required
+      />
+    </div>
+    <div class="input-box password-input">
+      <i class="fas fa-lock"></i>
+      <input type="password" class="password-field font-rubik" placeholder="Enter your password" required
+      />
+      <span class="password-toggle">
+        <i class="fas fa-eye-slash"></i>
+        <i class="fas fa-eye"></i>
+      </span>
+    </div>
+    <div class="button input-box">
+      <input class="font-rubik" type="submit" value="Sign Up" />
+    </div>
+    <div class="text sign-up-text font-rubik">
+      Already have an account? <label for="flip">Login now</label>
+    </div>
+  </div>
+</form>
+```
+
+just fyi, these 2 form are in the body tag that have an id="login-page".
+
+I want you to implement the login system. for the website. Now I have everything for the website except the loging and register system
+
+
+
+
+
+
+======================
+
+
+Create a function named "performLogin" in php that take username and password as parameters. This function should take a password and convert it to hash using `password_hash($password, PASSWORD_DEFAULT);`. After getting an hash of the password, call retrieve_data() function. You have to construct the input for it. The goal is to check if the username and password's hash is existed in the database or not. If both existed, it mean this user login successfully. I also want to have a cookie for auto login, and also session data given back to user. If the user with no session data try to access other page, they will be redirect back to login page.
+
+here is the table user structure
+
+```sql
+CREATE TABLE `user` (
+  `user_id` int(11) NOT NULL,
+  `first_name` varchar(100) NOT NULL,
+  `last_name` varchar(100) NOT NULL,
+  `register_date` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+```
+
+Here is how the retrieve_data() function work
+
+```php
+/**
+ * Retrieves data from a specified table with optional conditions.
+ *
+ * @param string $table The name of the table to query.
+ * @param array $columns An array of column names to retrieve.
+ * @param array|null $columns_to_check_condition Optional array of column names for conditions.
+ * @param array|null $data_to_check_condition Optional array of condition values.
+ * @return array|null The query results or null if an error occurred.
+ */
+
+// // Example usage 1: Retrieve all columns with no conditions
+// $table = 'cctv_locations_general';
+// $columns = ['*'];
+// $results = $dbOps->retrieve_data($table, $columns);
+
+// // Example usage 2: Retrieve specific columns with multiple conditions
+// $table = 'cctv_locations_general';
+// $columns = ['Cam_ID', 'Location', 'IsActive', 'IsFlood'];
+// $columns_to_check_condition = ['IsActive', 'Location', 'Cam_ID'];
+// $data_to_check_condition = [
+//     true,
+//     ['New York', 'Los Angeles'],
+//     ['CAM001', 'CAM002', 'CAM003']
+// ];
+// $results = $dbOps->retrieve_data($table, $columns, $columns_to_check_condition, $data_to_check_condition);
+
+public function retrieve_data(
+    string $table,
+    array $columns,
+    ?array $columns_to_check_condition = null,
+    ?array $data_to_check_condition = null
+): ?array {
+    try {
+        // Construct the base query
+        $query = "SELECT " . implode(', ', $columns) . " FROM $table";
+        
+        // Construct WHERE clause only if conditions are provided
+        $where_clause = "";
+        $params = [];
+        if ($columns_to_check_condition && $data_to_check_condition) {
+            $where_conditions = [];
+            foreach ($columns_to_check_condition as $i => $col) {
+                if (is_array($data_to_check_condition[$i])) {
+                    $placeholders = implode(',', array_fill(0, count($data_to_check_condition[$i]), '?'));
+                    $where_conditions[] = "$col IN ($placeholders)";
+                    $params = array_merge($params, $data_to_check_condition[$i]);
+                } else {
+                    $where_conditions[] = "$col = ?";
+                    $params[] = $data_to_check_condition[$i];
+                }
+            }
+            $where_clause = "WHERE " . implode(' AND ', $where_conditions);
+        }
+        
+        $query .= " $where_clause";
+
+        // Execute the query
+        $results = $this->execute_db_operation($query, "fetch", $params ?: null);
+        
+        error_log("[DATABASE] Successfully retrieved data from $table");
+        return $results;
+
+    } catch (Exception $e) {
+        error_log("[DATABASE] Error retrieving data from $table: " . $e->getMessage());
+        return null;
+    }
+}
+```
+
+you don't have to give me full 
+
+
+
+
+
+Create a function named "performRegister" in php that take username and password as parameters. This function should take a password and convert it to hash using `password_hash($password, PASSWORD_DEFAULT);`. After getting an hash of the password, call retrieve_data() function. You have to construct the input for it. The goal is to check if the username that will be about to sign up has been taken or not from the database, if not insert the user into database
+
+
+
+
+
+
+
+
+
+Create a php file name "helper_register.php" and "helper_login.php" this file will be call by ajax function from JS when user click login or register from login page. There are 2 function that you can use from `Auth.php`. You must do this to call it.
+
+```php
+$dbController = new DBController();
+$dbOps = new DatabaseOperations($dbController);
+$auth = new Auth($dbOps);
+```
+
+```php
+function performRegister($email, $password, $first_name, $last_name): array {
+    // Hash the password
+    $hashed_password = password_hash($password, PASSWORD_DEFAULT);
+
+    // Check if username already exists
+    $existing_user = $this->dbOps->retrieve_data('user', ['id'], ['email'], [$email]);
+
+    if ($existing_user && count($existing_user) > 0) {
+        return [
+            'success' => 'warning',
+            'message' => 'Email already exists'
+        ];
+    }
+
+    // Username is available, proceed with registration
+    // Insert new user into the database
+    $columns = ['email', 'password_hash', 'first_name', 'last_name'];
+    $data_to_insert = [$email, $hashed_password, $first_name, $last_name];
+    $insert_result = $this->dbOps->insert_data('user', $columns, $data_to_insert);
+
+    if ($insert_result) {
+        return [
+            'success' => 'success',
+            'message' => 'Registration successful'
+        ];
+    } else {
+        return [
+            'success' => 'error',
+            'message' => 'Registration failed. Please try again.'
+        ];
+    }
+}
+
+
+public function performLogin($email, $password): array {
+    // Prepare data for retrieve_data function
+    $table = 'user';
+    $columns = ['id', 'first_name', 'last_name', 'password_hash'];
+    $columns_to_check_condition = ['email'];
+    $data_to_check_condition = [$email];
+
+    // Call retrieve_data function to get user data including hashed password
+    $result = $this->dbOps->retrieve_data(
+        $table,
+        $columns,
+        $columns_to_check_condition,
+        $data_to_check_condition
+    );
+
+    if ($result && count($result) > 0) {
+        $user = $result[0];
+        
+        // Verify the password
+        if (password_verify($password, $user['password_hash'])) {
+            // Password is correct
+            
+            // Start session if not already started
+            if (session_status() == PHP_SESSION_NONE) {
+                session_start();
+            }
+
+            // Set session data
+            $_SESSION['id'] = $user['id'];
+            $_SESSION['first_name'] = $user['first_name'];
+            $_SESSION['last_name'] = $user['last_name'];
+            $_SESSION['last_activity'] = time();
+
+            // Set cookie for auto-login (expires in 10 minutes)
+            $expiration = time() + 600; // 600 seconds = 10 minutes
+            $cookie_value = base64_encode($user['id'] . '|' . $email . '|' . $user['password_hash'] . '|' . $expiration);
+            setcookie('auto_login', $cookie_value, $expiration, '/', '', true, true);
+
+            return [
+                'success' => 'success',
+                'message' => 'Login successful',
+                'user' => $user
+            ];
+        } else {
+            // Password is incorrect
+            return [
+                'success' => 'error',
+                'message' => 'Invalid username or password'
+            ];
+        }
+    } else {
+        // User not found
+        return [
+            'success' => 'error',
+            'message' => 'Invalid username or password'
+        ];
+    }
+}
+```
+
+This is my ajax function
+```js
+function registerUser() {
+    var formData = {
+        firstName: $('#SignupFName').val(),
+        lastName: $('#SignupLName').val(),
+        email: $('#SignupEmail').val(),
+        password: $('#SignupPassword1').val()
+    };
+
+    $.ajax({
+        url: '/path/to/helper_register.php',  // Replace with actual path when available
+        type: 'POST',
+        data: formData,
+        success: function(response) {
+            // Assuming the server returns a JSON object
+            var result = JSON.parse(response);
+            if (result.success) {
+                showNotification("Registration successful!", "success");
+                // Optionally, redirect to login page or perform auto-login
+            } else {
+                showNotification(result.message || "Registration failed. Please try again.", "error");
+            }
+        },
+        error: function() {
+            showNotification("An error occurred. Please try again later.", "error");
+        }
+    });
+}
+
+function loginUser() {
+    var formData = {
+        email: $('#LoginEmail').val(),
+        password: $('#LoginPassword').val()
+    };
+
+    $.ajax({
+        url: '/path/to/helper_login.php',  // Replace with actual path when available
+        type: 'POST',
+        data: formData,
+        success: function(response) {
+            // Assuming the server returns a JSON object
+            var result = JSON.parse(response);
+            if (result.success) {
+                showNotification("Login successful!", "success");
+                // Optionally, redirect to user dashboard or reload page
+            } else {
+                showNotification(result.message || "Login failed. Please check your credentials.", "error");
+            }
+        },
+        error: function() {
+            showNotification("An error occurred. Please try again later.", "error");
+        }
+    });
+}
+```
+
+If the login is sucessful
+1. you have to redirect user with session to `home.php`
+2. if failed to login, call `showNotification()` function to notify user that their password or username is wrong or other error happen.
+
+If register successful
+1. call `showNotification()` function to tell user that register is success and please loging
+2. also reload the page (the current page is index.php which is login page) so it back to login page.
+
+You may also modify this JS to achieve what I asked you, and also `showNotification()` have 3 type "success", "warning", "error". Use it appropriately for difference notification.
+
+
+
+
+
+
+Create a js function for jquery that take this input:
+
+```js
+var formData = {
+    firstName: $('#SignupFName').val().trim(),
+    lastName: $('#SignupLName').val().trim(),
+    email: $('#SignupEmail').val().trim(),
+    password: $('#SignupPassword1').val(),
+    confirmPassword: $('#SignupPassword2').val()
+};
+```
+
+the output of this function should be true if the validation is passed and false if not.
+
+This function will be used for form data validation. However this function should not just validate data, it also should tell the user what is wrong. To do this, this function should have a small tools tips right below the input box that have issue with nice ux/ui design. You can use ajax for this including html and css in the function. This is how the inout form looks like. I just let you know so you know each id if you need, but do not modify it. Work on the js only
+
+```html
+<div class="signup-form">
+    <div class="title font-rubik">Signup</div>
+      <form action="#" id="signup_form" autocomplete="off" novalidate>
+        <div class="input-boxes">
+            <div class="input-box">
+                <i class="fas fa-user"></i>
+                <input class="font-rubik" id="SignupFName" name="firstName" type="text" placeholder="First name" required autocomplete="off" />
+            </div>
+            <div class="input-box">
+                <i class="fas fa-user"></i>
+                <input class="font-rubik" id="SignupLName" name="lastName" type="text" placeholder="Last name" required autocomplete="off" />
+            </div>
+            <div class="input-box">
+                <i class="fas fa-envelope"></i>
+                <input class="font-rubik" id="SignupEmail" name="email" type="email" placeholder="Email" required autocomplete="off" />
+            </div>
+            <div class="input-box password-input">
+                <i class="fas fa-lock"></i>
+                <input class="password-field font-rubik" id="SignupPassword1" name="password" type="password" placeholder="Password" required autocomplete="new-password" />
+                <span class="password-toggle">
+                    <i class="fas fa-eye-slash"></i>
+                    <i class="fas fa-eye"></i>
+                </span>
+            </div>
+            <div class="input-box password-input" id="confirm-password-box" style="display: none;">
+                <i class="fas fa-lock"></i>
+                <input class="password-field font-rubik" id="SignupPassword2" name="confirmPassword" type="password" placeholder="Confirm Password" required autocomplete="new-password" />
+                <span class="password-toggle">
+                    <i class="fas fa-eye-slash"></i>
+                    <i class="fas fa-eye"></i>
+                </span>
+            </div>
+            <div class="button input-box">
+                <input class="font-rubik" type="submit" value="Sign Up" />
+            </div>
+            <div class="text sign-up-text font-rubik">
+                Already have an account? <label for="flip">Login now</label>
+            </div>
+        </div>
+    </form>
+</div>
+```
+

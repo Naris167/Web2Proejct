@@ -1,7 +1,7 @@
 <?php
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
-require_once('function.php');
+require_once('../../function.php');
 
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
     try {

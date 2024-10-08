@@ -90,23 +90,31 @@
     <script src="JavaScript/cart.js"></script>
     <script src="JavaScript/isotope.js"></script>
     <script src="JavaScript/carousel.js"></script>
-    <script src="JavaScript/login.js"></script>
+    <script src="JavaScript/auth.js"></script>
     <script src="script.js"></script>
 
     <!-- PHP Include -->
     <?php
-      require('function.php')
+      require('function.php');
     ?>
   </head>
   <body>
     <!-- start #header -->
+    <!-- <h1>Welcome, <?php echo htmlspecialchars($_SESSION['id']); ?>!</h1> -->
     <header id="header">
       <div class="strip d-flex justify-content-between px-4 py-1 bg-light">
         <p class="font-rale font-size-12 text-black-50 m-0">
           16 Bangkok-Chon Buri New Line, Prawet, Bangkok 10250
         </p>
         <div class="font-rale font-size-14">
-          <a href="#" class="px-3 border-right border-left text-dark">Login</a>
+          <a class="px-3 border-left text-dark">
+              Welcome, 
+              <span class="font-weight-bold">
+                  <?php echo htmlspecialchars($_SESSION['first_name']); ?>
+                  <?php echo htmlspecialchars($_SESSION['last_name']); ?>
+              </span>
+          </a>
+          <a href="#" id="LogoutButton" class="px-3 border-right border-left text-dark">Logout</a>
           <a href="#" class="px-3 border-right text-dark">Whishlist (0)</a>
         </div>
       </div>
